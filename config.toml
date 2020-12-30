@@ -27,7 +27,7 @@ disableLanguages        = true
   readingTime           = true
   imageStretch          = ""
   removeBlur            = false
-  socialShare           = ["twitter", "facebook", "reddit", "linkedin", "email"]
+#  socialShare           = ["twitter", "facebook", "reddit", "linkedin", "email"]
   hideEmptyStats        = false
   author                = "Anton Ohorodnyk"
 
@@ -43,7 +43,7 @@ disableLanguages        = true
   [params.header]
     navbarTitle         = "Anton Ohorodnyk"
     dynamicTitles       = true
-    searchMenu          = false
+    searchMenu          = true
     shareMenu           = false
     languageMenu        = false
 
