@@ -169,3 +169,7 @@ disableLanguages        = true
   mastodon              = ""
   # Email
   email                 = "anton@ohorodnyk.name"
+
+[markup.tableOfContents]
+  startLevel = 1
+  endLevel = 2
