@@ -30,6 +30,8 @@ disableLanguages        = true
 #  socialShare           = ["twitter", "facebook", "reddit", "linkedin", "email"]
   hideEmptyStats        = false
   author                = "Anton Ohorodnyk"
+  toc                   = true
+  tocWords              = 400
 
   [params.meta]
     description         = "Anton Ohorodnyk's blog"
