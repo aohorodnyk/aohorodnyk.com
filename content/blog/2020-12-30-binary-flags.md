@@ -14,8 +14,6 @@ The most popular ways to work with flags are:
 1. Store as a binary data in a variable
 
 # Options
-In next sections you will find examples for the most popular ways to store flags.
-
 ## Separate field
 It means we would create separate column in DB for each flag.
 
