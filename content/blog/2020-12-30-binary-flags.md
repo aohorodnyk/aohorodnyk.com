@@ -2,7 +2,7 @@
 title = "Quick Review of the Most Popular Ways to Implement Flags"
 description = "Quick introduction to different type of flags with pros and cons"
 author = "Anton Ohorodnyk"
-date = "2020-12-30"
+date = "2021-1-3"
 tags = []
 +++
 
