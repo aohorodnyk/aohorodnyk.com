@@ -6,7 +6,7 @@ title                   = "Anton Ohorodnyk"
 theme                   = "hugo-future-imperfect-slim"
 paginate                = 3
 disqusShortname         = ""
-googleAnalytics         = "G-35J2EP1FTL"
+googleAnalytics         = ""
 pluralizeListTitles     = false
 disableLanguages        = true
 
