@@ -16,7 +16,7 @@ The most popular ways to work with flags are:
 # Options
 In next sections you will find examples for the most popular ways to store flags.
 
-## Separate column/field/property
+## Separate field
 It means we would create separate column in DB for each flag.
 
 ### DB Example
