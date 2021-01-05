@@ -7,7 +7,8 @@ tags = []
 +++
 
 # Introduction
-There are many ways to store flags and use them for communication between `client <-> backend service` or `service <-> service`. In the article we are going to review the most popular options and we will try to answer for the question: When should I use a type of flags storage and or communication way.
+There are many ways to store flags and use them for communication between `client <-> backend service` or `service <-> service`. In the article we are going to review the most popular options and we will try to help to choose the correct way for a next project.
+
 The most popular ways to work with flags are:
 1. Store in separate [column in DB](https://en.wikipedia.org/wiki/Column_(database)) or separate [property in a class/struct](https://en.wikipedia.org/wiki/Property_(programming))
 1. Store as an [array](https://en.wikipedia.org/wiki/Array_data_structure) or in a [set](https://en.wikipedia.org/wiki/Set_(abstract_data_type))
@@ -55,7 +56,6 @@ In a code or in a NoSQL database representation would be:
 * Could be expensive in development or risky to remove in case of dynamic typed languages
 * Could be expensive in development to add or remove or update in case of microservice architecture
 * Could be expensive in development to remove from [DB as a column](https://en.wikipedia.org/wiki/Column_(database))
-* Could affect different limitation in case of bit number of flags
 
 ### Use Cases
 In my opinion before using this approach, we should answer "yes" for all listed options in the *checklist*:
@@ -75,7 +75,7 @@ Table `user`:
 | 1  | test1    |
 | 2  | test2    |
 
-Table `user_flag` table
+Table `user_flag`
 | id | user_id | flag    |
 |----|---------|---------|
 | 1  | 1       | is_new  |
