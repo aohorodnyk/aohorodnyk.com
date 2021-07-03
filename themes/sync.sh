@@ -6,7 +6,7 @@ update_theme() {
   echo "Updating ${THEME}..."
 
   rm -rf ./${THEME}
-  git clone $THEME_URL
+  git clone --depth 1 $THEME_URL
   rm -rf ${THEME}/.git
   git add -- ./${THEME}/
   git commit -m"Update ${THEME} theme" -- ./${THEME}
