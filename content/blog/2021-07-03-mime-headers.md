@@ -23,14 +23,147 @@ In this example we prefer to receive a response in JSON, if it's not supported, 
 
 The second example is character encoding `charset`. If client sets some `charset`, it expects to receive a response encoded by requested encoding.
 
+## Implementation notes
+Follow the description above, we can specify requirements for the `Accept` header parser
+1. Split all mime types by `,` symbol;
+1. Parse mime type and params;
+1. Order mime types and rules by:
+    1. Use `q` parameter to sort;
+    1. More strict mime types have more priority than wildcards;
+    1. More parameters have more priority.
+1. Match supported mime types to `Accept` rules from accept header and find the best result for either for client and server.
+
 # Creating our own middleware
-Your router/framework can support this feature out of the box, then just use it and do not spend time to implement your own solution, if possible.
+Your router/framework can support this feature out of the box. If possible, do not spend time to implement your own solution.
 However, read the article in case of:
 * You do not agree with an implementation in the framework;
 * You need to implement support of `Accept` header by yourself;
 * You want to discover more about `Accept` header supporting.
 
 ## Background
-We will use [mimeheader](https://github.com/aohorodnyk/mimeheader) library to parse and match
+* We will use [mimeheader](https://github.com/aohorodnyk/mimeheader) library to parse and match mime types;
+* Our middleware will implement `http.HandlerFunc` type;
+* It's ONLY for learning purpose, do not use it in real projects AS IS.
 
 ## http/net middleware for http.HandleFunc
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"net/http"
+
+	"github.com/aohorodnyk/mimeheader"
+)
+
+func main() {
+	r := http.NewServeMux()
+
+	r.HandleFunc("/", acceptHeaderMiddleware([]string{"application/json", "text/html"})(handlerTestFunc))
+
+	err := http.ListenAndServe(":8080", r)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func acceptHeaderMiddleware(acceptMimeTypes []string) func(http.HandlerFunc) http.HandlerFunc {
+	return func(next http.HandlerFunc) http.HandlerFunc {
+		return func(rw http.ResponseWriter, r *http.Request) {
+			header := r.Header.Get("Accept")
+			ah := mimeheader.ParseAcceptHeader(header)
+
+			// We do not need default mime type.
+			mh, mtype, m := ah.Negotiate(acceptMimeTypes, "")
+			if !m {
+				// If not matched accept mim type, return 406.
+				rw.WriteHeader(http.StatusNotAcceptable)
+
+				return
+			}
+
+			// Add matched mime type to context.
+			ctx := context.WithValue(r.Context(), "resp_content_type", mtype)
+			// Add charset, if set
+			chs, ok := mh.Params["charset"]
+			if ok {
+				ctx = context.WithValue(ctx, "resp_charset", chs)
+			}
+
+
+			// New requet from new context.
+			rc := r.WithContext(ctx)
+
+			// Call next middleware or handler.
+			next(rw, rc)
+		}
+	}
+}
+
+func handlerTestFunc(rw http.ResponseWriter, r *http.Request) {
+	mtype := r.Context().Value("resp_content_type").(string)
+	charset, _ := r.Context().Value("resp_charset").(string)
+
+	rw.Write([]byte(mtype + ":" + charset))
+}
+```
+
+## Responses
+```http request
+GET http://localhost:8080/
+Accept: text/*; q=0.9,application/json; q=1;
+
+#HTTP/1.1 200 OK
+#Date: Sat, 03 Jul 2021 23:55:41 GMT
+#Content-Length: 17
+#Content-Type: text/plain; charset=utf-8
+#
+#application/json:
+
+###
+
+GET http://localhost:8080/
+Accept: text/*; q=1,application/json; q=1; charset=utf-8bm;
+
+#HTTP/1.1 200 OK
+#Date: Sat, 03 Jul 2021 23:56:14 GMT
+#Content-Length: 24
+#Content-Type: text/plain; charset=utf-8
+#
+#application/json:utf-8bm
+
+###
+GET http://localhost:8080/
+Accept: text/html; charset=utf-8; q=1,application/*; q=1; charset=cp1251;
+
+#HTTP/1.1 200 OK
+#Date: Sat, 03 Jul 2021 23:54:20 GMT
+#Content-Length: 14
+#Content-Type: text/plain; charset=utf-8
+#
+#text/html:utf-8
+
+###
+GET http://localhost:8080/
+Accept: text/*; q=1,application/*; q=0.9;
+
+#HTTP/1.1 200 OK
+#Date: Sat, 03 Jul 2021 23:56:33 GMT
+#Content-Length: 10
+#Content-Type: text/plain; charset=utf-8
+#
+#text/html:
+
+###
+GET http://localhost:8080/
+Accept: text/plain; q=1,application/xml; q=1;
+
+# HTTP/1.1 406 Not Acceptable
+# Date: Sat, 03 Jul 2021 19:17:28 GMT
+# Content-Length: 0
+# Connection: close
+```
+
+# Conclusion
+Let's try to not forget about `Accept` header, event if this feature is not implemented in current framework.
