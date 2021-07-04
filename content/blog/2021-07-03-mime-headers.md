@@ -7,105 +7,105 @@ tags = []
 +++
 
 # Introduction
-It's not so obvious that `Accept` header is important part of HTTP and especially REST communication.
-I was a part of multiple projects in different fields where people did not worry about accept header, either I'm.
+It's not so evident that the `Accept` header is an essential part of HTTP and especially REST communication.
+Usually people do not worry about `Accept` header, either I'm.
 
-In this short article I will show how simple to add accept validation and matching to your HTTP router, independently to router and framework you use.
+This short article will show how simple to add validation and matching to your HTTP router independently to the router and framework you use.
 
 # About Accept header
-`Accept` header is simple list of mime types (`application/json`, `text/html`, etc.) or wildcard rules (`*/*`, `application/*`, etc.) that are supported by a client.
-In case of provider `Accept` header, client expects to receive a response with one of matched mime types from the header.
+`Accept` header is a simple list of mime types (`application/json`, `text/html`, etc.) or wildcard rules (`*/*`, `application/*`, etc.) that a client supports.
+In the case of the provider `Accept` header, the client expects to respond with one of the matched mime types from the header.
 
-This header also supports additional parameters can be provider per a mime type.
+This header also supports additional parameters that a client can provide per a mime type.
 
 The main parameter is quality `q`, that defines order of rules to choose the best option for a client, for example: `*/*;q=0.1, application/json; q=1, application/xml; q=0.8`.
-In this example we prefer to receive a response in JSON, if it's not supported, then  return in XML otherwise does not matter the response mime type.
+In this example, we prefer to receive a response in JSON. If it's not supported, return in XML; otherwise, it does not matter the response mime type.
 
-The second example is character encoding `charset`. If client sets some `charset`, it expects to receive a response encoded by requested encoding.
+The second example is character encoding `charset`. If a client sets some `charset`, it expects to receive a response encoded.
 
 ## Implementation notes
-Follow the description above, we can specify requirements for the `Accept` header parser
+Following the description above. We can specify requirements for the `Accept` header parser
 1. Split all mime types by `,` symbol;
 1. Parse mime type and params;
 1. Order mime types and rules by:
     1. Use `q` parameter to sort;
     1. More strict mime types have more priority than wildcards;
     1. More parameters have more priority.
-1. Match supported mime types to `Accept` rules from accept header and find the best result for either for client and server.
+1. Match supported mime types to `Accept` rules from the `Accept` header and find the best result for either for client and server.
 
-# Creating our own middleware
-Your router/framework can support this feature out of the box. If possible, do not spend time to implement your own solution.
+# Creating middleware
+Your router/framework can support this feature out of the box. If possible, do not spend time implementing your solution.
 However, read the article in case of:
-* You do not agree with an implementation in the framework;
+* You disagree with an implementation in your framework;
 * You need to implement support of `Accept` header by yourself;
 * You want to discover more about `Accept` header supporting.
 
 ## Background
 * We will use [mimeheader](https://github.com/aohorodnyk/mimeheader) library to parse and match mime types;
 * Our middleware will implement `http.HandlerFunc` type;
-* It's ONLY for learning purpose, do not use it in real projects AS IS.
+* It's ONLY for learning purposes, do not use it in real projects AS IS.
 
 ## http/net middleware for http.HandleFunc
 ```go
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
+ "context"
+ "log"
+ "net/http"
 
-	"github.com/aohorodnyk/mimeheader"
+ "github.com/aohorodnyk/mimeheader"
 )
 
 func main() {
-	r := http.NewServeMux()
+ r := http.NewServeMux()
 
-	r.HandleFunc("/", acceptHeaderMiddleware([]string{"application/json", "text/html"})(handlerTestFunc))
+ r.HandleFunc("/", acceptHeaderMiddleware([]string{"application/json", "text/html"})(handlerTestFunc))
 
-	err := http.ListenAndServe(":8080", r)
-	if err != nil {
-		log.Fatalln(err)
-	}
+ err := http.ListenAndServe(":8080", r)
+ if err != nil {
+  log.Fatalln(err)
+ }
 }
 
 func acceptHeaderMiddleware(acceptMimeTypes []string) func(http.HandlerFunc) http.HandlerFunc {
-	return func(next http.HandlerFunc) http.HandlerFunc {
-		return func(rw http.ResponseWriter, r *http.Request) {
-			header := r.Header.Get("Accept")
-			ah := mimeheader.ParseAcceptHeader(header)
+ return func(next http.HandlerFunc) http.HandlerFunc {
+  return func(rw http.ResponseWriter, r *http.Request) {
+   header := r.Header.Get("Accept")
+   ah := mimeheader.ParseAcceptHeader(header)
 
-			// We do not need default mime type.
-			mh, mtype, m := ah.Negotiate(acceptMimeTypes, "")
-			if !m {
-				// If not matched accept mim type, return 406.
-				rw.WriteHeader(http.StatusNotAcceptable)
+   // We do not need default mime type.
+   mh, mtype, m := ah.Negotiate(acceptMimeTypes, "")
+   if !m {
+    // If not matched accept mim type, return 406.
+    rw.WriteHeader(http.StatusNotAcceptable)
 
-				return
-			}
+    return
+   }
 
-			// Add matched mime type to context.
-			ctx := context.WithValue(r.Context(), "resp_content_type", mtype)
-			// Add charset, if set
-			chs, ok := mh.Params["charset"]
-			if ok {
-				ctx = context.WithValue(ctx, "resp_charset", chs)
-			}
+   // Add matched mime type to context.
+   ctx := context.WithValue(r.Context(), "resp_content_type", mtype)
+   // Add charset, if set
+   chs, ok := mh.Params["charset"]
+   if ok {
+    ctx = context.WithValue(ctx, "resp_charset", chs)
+   }
 
 
-			// New requet from new context.
-			rc := r.WithContext(ctx)
+   // New requet from new context.
+   rc := r.WithContext(ctx)
 
-			// Call next middleware or handler.
-			next(rw, rc)
-		}
-	}
+   // Call next middleware or handler.
+   next(rw, rc)
+  }
+ }
 }
 
 func handlerTestFunc(rw http.ResponseWriter, r *http.Request) {
-	mtype := r.Context().Value("resp_content_type").(string)
-	charset, _ := r.Context().Value("resp_charset").(string)
+ mtype := r.Context().Value("resp_content_type").(string)
+ charset, _ := r.Context().Value("resp_charset").(string)
 
-	rw.Write([]byte(mtype + ":" + charset))
+ rw.Write([]byte(mtype + ":" + charset))
 }
 ```
 
@@ -166,4 +166,4 @@ Accept: text/plain; q=1,application/xml; q=1;
 ```
 
 # Conclusion
-Let's try to not forget about `Accept` header, event if this feature is not implemented in current framework.
+Let's try not to forget about the `Accept` header even if this feature is not implemented in the current framework.
