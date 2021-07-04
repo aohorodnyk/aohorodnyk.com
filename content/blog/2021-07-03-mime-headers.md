@@ -45,6 +45,41 @@ However, read the article in case of:
 * Our middleware will implement `http.HandlerFunc` type;
 * It's ONLY for learning purposes, do not use it in real projects AS IS.
 
+## Implementation notes
+In this block we will review the main part of an example:
+```go
+header := r.Header.Get("Accept")
+
+// Parse Accept header to build needed rules for matching.
+ah := mimeheader.ParseAcceptHeader(header)
+
+// We do not need default mime type.
+mh, mtype, m := ah.Negotiate(acceptMimeTypes, "")
+if !m {
+  // If not matched accept mim type, return 406.
+  rw.WriteHeader(http.StatusNotAcceptable)
+
+  return
+}
+
+// Add matched mime type to context.
+ctx := context.WithValue(r.Context(), "resp_content_type", mtype)
+// Add charset, if exists.
+chs, ok := mh.Params["charset"]
+if ok {
+  ctx = context.WithValue(ctx, "resp_charset", chs)
+}
+```
+
+Actually the main magic happenes in two lines of code:
+```go
+// Parse Accept header to build needed rules for matching.
+ah := mimeheader.ParseAcceptHeader(header)
+// We do not need default mime type.
+mh, mtype, m := ah.Negotiate(acceptMimeTypes, "")
+```
+That's precisely the whole code needed to parse and match mime types. Other logic is related to the processing of retrieved data.
+
 ## http/net middleware for http.HandleFunc
 ```go
 package main
@@ -167,3 +202,5 @@ Accept: text/plain; q=1,application/xml; q=1;
 
 # Conclusion
 Let's try not to forget about the `Accept` header even if this feature is not implemented in the current framework.
+
+If you use go and want to work with `Accept` header or mime types in general, you could try [mimeheader](https://github.com/aohorodnyk/mimeheader) library. I believe it will help with the task.
