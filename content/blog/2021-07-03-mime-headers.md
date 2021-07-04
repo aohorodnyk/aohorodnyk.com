@@ -45,7 +45,7 @@ However, read the article in case of:
 * Our middleware will implement `http.HandlerFunc` type;
 * It's ONLY for learning purposes, do not use it in real projects AS IS.
 
-## Implementation notes
+## Header parsing explanation
 In this block we will review the main part of an example:
 ```go
 header := r.Header.Get("Accept")
