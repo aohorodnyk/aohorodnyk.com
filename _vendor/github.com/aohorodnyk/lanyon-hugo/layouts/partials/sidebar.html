@@ -17,7 +17,6 @@
   <nav class="sidebar-nav">
     {{- $currentPage := . }}
     {{- range .Site.Menus.main -}}
-    {{ $currentPage }}
     <a class="sidebar-nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
     {{- end -}}
 
