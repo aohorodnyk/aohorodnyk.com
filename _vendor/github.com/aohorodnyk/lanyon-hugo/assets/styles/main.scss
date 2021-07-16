@@ -27,3 +27,13 @@ div.post {
     list-style-type: none;
   }
 }
+
+.post {
+  table#list {
+    border: none;
+    td {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

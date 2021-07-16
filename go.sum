@@ -3,4 +3,6 @@ github.com/FortAwesome/Font-Awesome v4.7.0+incompatible/go.mod h1:IUgezN/MFpCDIl
 github.com/aohorodnyk/lanyon-hugo v0.0.0-20210123043723-cd7b91420a90 h1:3lRH0XmIbN5o3sRWxjYPGBLRS+V7+G9Y3t+4sxLBH8I=
 github.com/aohorodnyk/lanyon-hugo v0.0.0-20210123043723-cd7b91420a90/go.mod h1:MFc1U0nuO4oVCF2L6e/QjOHCoz8XnksNmIRH2nBK8TA=
 github.com/aohorodnyk/lanyon-hugo v0.0.1/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk/3OK7Vl9aDEGwM=
+github.com/aohorodnyk/lanyon-hugo v0.0.2/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk/3OK7Vl9aDEGwM=
+github.com/aohorodnyk/lanyon-hugo v0.0.3/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk/3OK7Vl9aDEGwM=
 github.com/poole/poole v2.1.0+incompatible/go.mod h1:OYZx5/KqeGiwEqWY8ptjOw3xRmqUaYdAwNv1tzThTuQ=
