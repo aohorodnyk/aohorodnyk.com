@@ -1,0 +1,1 @@
+# github.com/aohorodnyk/lanyon-hugo v0.0.0-20210123043723-cd7b91420a90

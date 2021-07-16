@@ -1,0 +1,29 @@
+@import "poole";
+@import "syntax";
+@import "lanyon";
+
+// Add border styles to Code Style.
+div.highlight {
+  border: 1px solid #ccc;
+  padding: .5em;
+
+  pre {
+    background-color: #fafafa;
+  }
+}
+
+nav#TableOfContents {
+  ul {
+    list-style-type: none;
+    margin: 0;
+  }
+  >ul {
+    padding-left: 0;
+  }
+}
+
+div.post {
+  ul#list {
+    list-style-type: none;
+  }
+}

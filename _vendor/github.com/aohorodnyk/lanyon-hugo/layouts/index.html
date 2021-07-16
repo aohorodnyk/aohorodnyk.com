@@ -1,0 +1,15 @@
+{{ partial "default_head.html" . }}
+
+<div class="post">
+  <h1 class="post-title">Posts</h1>
+  <table id="list">
+    {{ range (where .Site.Pages "Type" "post") }}
+    <tr>
+      <td>{{ .Site.Params.DateForm | default "2006.01.02" | .Date.Format }}</td>
+      <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+    </tr>
+    {{ end }}
+  </table>
+</div>
+
+{{ partial "default_foot.html" . }}

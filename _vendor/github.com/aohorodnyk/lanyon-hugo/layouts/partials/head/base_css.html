@@ -1,0 +1,19 @@
+{{- $main := resources.Get "styles/main.scss" -}}
+{{- $main = $main | resources.ToCSS -}}
+
+{{- $styleSlice := slice $main -}}
+
+{{- /* Calculate hash */ -}}
+{{- $stylesHashSource := $styleSlice | resources.Concat "/tmp/fingerprint_base_css.css" | resources.Minify | resources.Fingerprint "sha512" -}}
+{{- $stylesHash := md5 $stylesHashSource.Data.Integrity -}}
+
+{{- /* Concatenate to build */ -}}
+{{- $buildName := print $stylesHash "/css/base.css" -}}
+{{- $style := $styleSlice | resources.Concat $buildName -}}
+
+{{- /* Production preparation */ -}}
+{{- if eq hugo.Environment "production" -}}
+{{- $style = $style | resources.Minify -}}
+{{- end -}}
+
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />

@@ -1,0 +1,29 @@
+baseurl: "https://anton.ohorodnyk.name/"
+DefaultContentLanguage: en
+title: Anton Ohorodnyk
+theme: "github.com/aohorodnyk/lanyon-hugo"
+pygmentsUseClasses: true
+
+menus:
+  main:
+    - title: Full list of posts
+      name: Posts
+      url: /
+      weight: 100
+    - title: About the author
+      name: About
+      url: /about/
+      weight: 200
+
+params:
+  author: Anton Ohorodnyk
+  description: Only my private opinion
+  title: Some private opinion
+  favicon:
+    color: "#262626"
+
+taxonomies:
+
+module:
+  imports:
+    - path: "github.com/aohorodnyk/lanyon-hugo"
