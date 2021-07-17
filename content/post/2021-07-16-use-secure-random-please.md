@@ -5,7 +5,6 @@ author: "Anton Ohorodnyk"
 date: "2021-07-16T21:16:29-07:00"
 type: "post"
 mermaid: false
-draft: true
 ---
 ## Disclaimer
 The current article is an introductory article about the practical usage of different generators in standard libraries of other languages. It is the reason we do not explore different pseudo-random algorithms.
@@ -37,11 +36,13 @@ There is at least one service with APIs that can be used to generate "true rando
 
 ## Pseudo-random number generators
 In all languages I've seed before presented at least two different types of random number generators:
-* [Pseudo random number generator (also mathematical in some languages)](https://en.wikipedia.org/wiki/Pseudorandom_number_generator). Known as PRNG
+* [Pseudo random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator)[^2]. Known as PRNG
 * [Cryptographically secure random number generator](https://en.wikipedia.org/wiki/Cryptographically-secure_pseudorandom_number_generator). Known as CSPRNG
 
+[^2]: In some languages this type of random named as mathematical, for example Golang `math/rand`, JavaScript and Java `Math.random`
+
 ### Pseudo-random number generator (PRNG)
-"Mathematical" PRNG is a predictable number generator with the ability to specify custom "seed".
+PRNG is a predictable number generator with the ability to specify custom "seed".
 
 Seed is a value that uses as a starting value for the following random values mathematically calculated from previously generated values.
 
