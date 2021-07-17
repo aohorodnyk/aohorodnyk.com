@@ -68,7 +68,7 @@ CSPRNG is also a pseudo-random number generator and also mathematical, but it us
 
 These algorithms are usually suggested to use for "real" sensitive generated values. I'm not a security expert to contradict this statement, but I have a reason to add more rules for using secure random.
 
-Usually, software engineers are not so familiar with security (I'm as well) as we think we are. So when developers write some feature, they are can think the particular random number will not affect security, but it can affect in the future.
+Usually, software engineers are not so familiar with security (I'm as well) as we think we are. So when developers write some feature, they think the particular random number will not affect safety, but it can affect it in the future.
 
 #### When not to use:
 * Use a basic CSPRNG provided by a programming language whenever you need random bytes, and you did not decide to use the faster one.
