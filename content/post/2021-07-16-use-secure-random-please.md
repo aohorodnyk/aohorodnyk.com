@@ -8,11 +8,21 @@ mermaid: false
 draft: true
 ---
 ## Disclaimer
-The current article is an introductory article about the realistic representation of different generators in standard libraries of other languages. It is the reason we do not explore different pseudo-random algorithms.
+The current article is an introductory article about the practical usage of different generators in standard libraries of other languages. It is the reason we do not explore different pseudo-random algorithms.
 
 The article tries to help avoid the most common issues of developers.
 
 If you have to use a specific random algorithm, certified algorithms, or algorithm forced by your security team or developer's collegium (for example, gambling or some security products), just use it.
+
+### Motivation
+I have seen few real-world security issues related to the topic in projects I worked on them.
+
+Some news (I remember only one the newest of them, I heard about):
+> Knowing the creation date of an account, an attacker can try to bruteforce the account password with a small range of passwords (~100) and gain access to it.
+>
+> — donjon.ledger.com[^1]
+
+[^1]: [First found website](https://donjon.ledger.com/kaspersky-password-manager/), because I remember the issue from news
 
 ## What is random
 On the one hand, random is a simple entity to understand. Random value - is a value that someone cannot predict.
@@ -57,7 +67,7 @@ CSPRNG is also a pseudo-random number generator and also mathematical, but it us
 
 These algorithms are usually suggested to use for "real" sensitive generated values. I'm not a security expert to contradict this statement, but I have a reason to add more rules for using secure random.
 
-Usually, software engineers are not so familiar with security (I'm as well) as we think we are. So when developers write some feature, they are can think the particular random number will not affect security, but it will in the future.
+Usually, software engineers are not so familiar with security (I'm as well) as we think we are. So when developers write some feature, they are can think the particular random number will not affect security, but it can affect in the future.
 
 #### When not to use:
 * Use a basic CSPRNG provided by a programming language whenever you need random bytes, and you did not decide to use the faster one.
