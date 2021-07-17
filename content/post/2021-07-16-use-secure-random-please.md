@@ -60,7 +60,7 @@ These algorithms are usually suggested to use for "real" sensitive generated val
 Usually software engineers are not so familiar with security (I'm as well) as we think we are. When developers write some feature, they are can think especial random number will not affect security, but it will in future.
 
 #### When not to use:
-* Use a basic CSPRNG provided by a programming language whenever you need random bytes and you did not decide to use mathematical one.
+* Use a basic CSPRNG provided by a programming language whenever you need random bytes and you did not decide to use the faster one.
 * Investigate more secure implementation in a language or external libraries, if you need certified crypto-secure generator
 
 #### When not to use:
