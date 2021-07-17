@@ -2,10 +2,11 @@
 title: "Accept header parser and matcher"
 description: "Every REST service MUST support Accept header"
 author: "Anton Ohorodnyk"
-date: "2021-07-03"
+date: "2021-07-03T19:09:05-07:00"
 type: "post"
+aliases: ["/blog/2021-07-03-mime-headers/"]
+mermaid: false
 ---
-
 ## Introduction
 It's not so evident that the `Accept` header is an essential part of HTTP and especially REST communication.
 Usually people do not worry about `Accept` header, either I'm.

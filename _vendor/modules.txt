@@ -1,1 +1,2 @@
-# github.com/aohorodnyk/lanyon-hugo v0.0.3
+# github.com/aohorodnyk/lanyon-hugo v0.0.4
+# github.com/mermaid-js/mermaid v8.8.4+incompatible
