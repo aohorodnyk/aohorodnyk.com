@@ -7,6 +7,10 @@ pygmentsUseClasses: true
 menus:
   main:
     - title: Full list of posts
+      name: Home
+      url: /
+      weight: 10
+    - title: Full list of posts
       name: Posts
       url: /
       weight: 100
