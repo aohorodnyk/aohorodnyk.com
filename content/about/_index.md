@@ -1,10 +1,10 @@
-+++
-title = "About"
-description = "Few words about author"
-author = "Anton Ohorodnyk"
-date = "2020-12-30"
-layout = "about"
-+++
+---
+title: "About"
+description: "Few words about author"
+author: "Anton Ohorodnyk"
+date: "2020-12-30"
+layout: "about"
+---
 
 I'm senior software engineer with more than 10 years of experience in backend development.
 I have Master's degree in Software Engineering.

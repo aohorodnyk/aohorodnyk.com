@@ -6,5 +6,6 @@ github.com/aohorodnyk/lanyon-hugo v0.0.1/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk
 github.com/aohorodnyk/lanyon-hugo v0.0.2/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk/3OK7Vl9aDEGwM=
 github.com/aohorodnyk/lanyon-hugo v0.0.3/go.mod h1:sqLagP1q9NjdLx+pYIJpX3nd1Ejlk/3OK7Vl9aDEGwM=
 github.com/aohorodnyk/lanyon-hugo v0.0.4/go.mod h1:Bj06IBTPUzPF11JMy4uBSYXPcrKO1f8Z3T5+r3y9sbc=
+github.com/aohorodnyk/lanyon-hugo v0.0.5/go.mod h1:Bj06IBTPUzPF11JMy4uBSYXPcrKO1f8Z3T5+r3y9sbc=
 github.com/mermaid-js/mermaid v8.8.4+incompatible/go.mod h1:pGJSm9DYANtp59DADJgNzFh1uIpkn5xaH3ZBdv1VNTI=
 github.com/poole/poole v2.1.0+incompatible/go.mod h1:OYZx5/KqeGiwEqWY8ptjOw3xRmqUaYdAwNv1tzThTuQ=
