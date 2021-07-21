@@ -20,7 +20,7 @@ params:
   description: Only my private opinion
   title: Some private opinion
   customCSS:
-    - /css/site.css
+    - css/site.css
   favicon:
     color: "#262626"
 

@@ -12,14 +12,10 @@
     {{ end }}
   </title>
 
-  {{- range .Site.Params.customCSS }}
-  <link rel="stylesheet" href="{{ . | relURL }}">
-  {{- end }}
-
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/index.xml">
 
-  {{ template "partials/head/base_css.html" . }}
+  {{ template "partials/head/css.html" . }}
 
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/schema.html" . }}

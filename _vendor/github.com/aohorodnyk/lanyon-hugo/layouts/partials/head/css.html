@@ -3,17 +3,24 @@
 
 {{- $styleSlice := slice $main -}}
 
+{{- range $css := .Site.Params.customCSS -}}
+  {{- $r := resources.Get $css -}}
+  {{- $styleSlice = $styleSlice | append $r -}}
+{{ end }}
+
 {{- /* Calculate hash */ -}}
 {{- $stylesHashSource := $styleSlice | resources.Concat "/tmp/fingerprint_base_css.css" | resources.Minify | resources.Fingerprint "sha512" -}}
 {{- $stylesHash := md5 $stylesHashSource.Data.Integrity -}}
 
 {{- /* Concatenate to build */ -}}
-{{- $buildName := print $stylesHash "/css/base.css" -}}
+{{- $buildName := print $stylesHash "/css/base.min.css" -}}
 {{- $style := $styleSlice | resources.Concat $buildName -}}
 
 {{- /* Production preparation */ -}}
 {{- if eq hugo.Environment "production" -}}
-{{- $style = $style | resources.Minify -}}
+  {{- $style = $style | resources.Minify -}}
 {{- end -}}
 
-<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+{{- $stylesHashSource = $style | resources.Fingerprint "sha512" -}}
+
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $stylesHashSource.Data.Integrity }}" />
