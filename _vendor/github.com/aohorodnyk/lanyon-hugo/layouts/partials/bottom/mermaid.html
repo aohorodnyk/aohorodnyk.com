@@ -9,5 +9,7 @@
 {{- $buildName := print $jsHash "/js/mermaid.min.js" -}}
 {{- $js := slice $mermaid | resources.Concat $buildName -}}
 
-<script src="{{ $js.RelPermalink }}" async></script>
+{{- $jsHashSource = $js | resources.Fingerprint "sha512" -}}
+
+<script src="{{ $js.RelPermalink }}" integrity="{{ $jsHashSource.Data.Integrity }}" async></script>
 {{ end }}
