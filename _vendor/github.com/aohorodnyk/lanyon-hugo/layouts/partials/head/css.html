@@ -13,7 +13,7 @@
 {{- $stylesHash := md5 $stylesHashSource.Data.Integrity -}}
 
 {{- /* Concatenate to build */ -}}
-{{- $buildName := print $stylesHash "/css/base.min.css" -}}
+{{- $buildName := print $stylesHash "/css/base.css" -}}
 {{- $style := $styleSlice | resources.Concat $buildName -}}
 
 {{- /* Production preparation */ -}}
