@@ -19,6 +19,8 @@ params:
   author: Anton Ohorodnyk
   description: Only my private opinion
   title: Some private opinion
+  customCSS:
+    - /css/site.css
   favicon:
     color: "#262626"
 
@@ -26,4 +28,4 @@ taxonomies:
 
 module:
   imports:
-    - path: "github.com/aohorodnyk/lanyon-hugo"
+    - path: github.com/aohorodnyk/lanyon-hugo
