@@ -1,0 +1,18 @@
+graph TB
+    subgraph t [Kafka Topic]
+        subgraph p1 [Partition 1]
+        p1m1["Message 2"]-->p1m2["Message 5"]-->p1m3["Message 6"]-->p1m4["Next"]
+        end
+        subgraph p2 [Partition 2]
+        p2m1["Message 1"]-->p2m2["Message 3"]-->p2m3["Message 8"]-->p2m4["Next"]
+        end
+        subgraph p3 [Partition 3]
+        p3m1["Message 4"]-->p3m2["Message 7"]-->p3m3["Message 9"]-->p3m4["Next"]
+        end
+    end
+
+    subgraph n [New messages]
+        m10["Message 10"]-->p1m4
+        m11["Message 11"]-->p2m4
+        m12["Message 12"]-->p3m4
+    end

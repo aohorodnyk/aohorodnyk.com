@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant c as Consumers
+  participant k as Kafka
+  
+  k->>c: Read messages 1,2,3,4,5
+  c->>k: Shift pointer 0+4
+
+  k->>c: Read messages 5,6,7,8
+  c->>k: Shift pointer 4+4
+
+  k->>c: Read messages 9,10,11
+  c->>k: Shift pointer 8+3
