@@ -1,0 +1,11 @@
+sequenceDiagram
+  autonumber
+  participant P as Producer
+  participant C as Consumer
+  participant MSQ as Message Queue
+  P->>MSQ: Push Message1 to MSQ
+  MSQ-->>+C: Read Message1 from MSQ
+  Note right of C: Consumer restarted
+  MSQ-->>C: Read Message1 from MSQ
+  C->>-MSQ: Commit Message1 to MSQ
+  Note over C,MSQ: Message1 will be<br/>not send<br/>to Consumer enymore
