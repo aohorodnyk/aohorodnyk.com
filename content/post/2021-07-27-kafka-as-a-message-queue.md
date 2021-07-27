@@ -2,7 +2,7 @@
 title: "Kafka as a message queue"
 description: "Small, but very important part for people who wants to choose kafka as a message queue."
 author: "Anton Ohorodnyk"
-date: "2021-07-26T10:00:00-07:00"
+date: "2021-07-27T10:00:00-07:00"
 type: "post"
 mermaid: false
 ---
