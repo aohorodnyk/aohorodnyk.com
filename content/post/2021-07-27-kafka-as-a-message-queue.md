@@ -53,6 +53,13 @@ First of all, let's overview the main features you will deal with when you choos
 
 With this information, we need to understand the main concepts we will work with. We will not only deal with event publishing and consumption. There are more things we will deal with.
 
+### Key names
+- **Topic** - something like database or collection in other databases. In topic Kafka stores all events pushed to it. Consumers uses a topic as well to read messages from it.
+- **Broker** - Kafka node processes events.
+- **Partition** - Kafka has a feature to scale between nodes and consumers. For this reason Kafka team introduced a partition rate (it's just int number). This number is used in the scope of message distribution between partitions. Partitions assign to consumers and brokers uniquely.
+- **Producer** - an application that pushes new events to a topic.
+- **Consumer** - an application that reads messages from a topic, and processes, and commits them.
+
 ### Message stream
 Message queue in Kafka builds over Kafka message stream. Actually, the message stream is just storage with all messages sequentially persisted. Data from the storage can be read by batches of them with a specific size in bytes.
 
