@@ -24,4 +24,4 @@ My favorite programming language is [Go](https://golang.org/). However, I belie
 ## Content
 The main goal for this blog is to share my private opinion about some questions I worry about. I hope every article will be helpful for someone. If you want to reach me out, use any way you can find.
 
-[^contacts]: [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [KeyBase](https://keybase.io/avoh) - [Email](mailto:anton@ohorodnyk.name)
+[^contacts]: [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [DEV](https://dev.to/aohorodnyk) - [KeyBase](https://keybase.io/avoh) - [Email](mailto:anton@ohorodnyk.name)
