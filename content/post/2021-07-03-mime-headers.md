@@ -8,8 +8,8 @@ aliases: ["/blog/2021-07-03-mime-headers/"]
 mermaid: false
 ---
 ## Introduction
-It's not so evident that the `Accept` header is an essential part of HTTP and especially REST communication.
-Usually people do not worry about `Accept` header, either I'm.
+It's not evident that the `Accept` header is an essential part of HTTP, especially REST communication.
+Usually, people do not worry about the `Accept` header, either I'm.
 
 This short article will show how simple to add validation and matching to your HTTP router independently to the router and framework you use.
 
@@ -32,7 +32,7 @@ Following the description above. We can specify requirements for the `Accept` he
     1. Use `q` parameter to sort;
     1. More strict mime types have more priority than wildcards;
     1. More parameters have more priority.
-1. Match supported mime types to `Accept` rules from the `Accept` header and find the best result for either for client and server.
+1. Match supported mime types to `Accept` rules from the `Accept` header and find the best result for the client or server.
 
 ## Creating middleware
 Your router/framework can support this feature out of the box. If possible, do not spend time implementing your solution.
@@ -47,7 +47,7 @@ However, read the article in case of:
 * It's ONLY for learning purposes, do not use it in real projects AS IS.
 
 ### Header parsing explanation
-In this block we will review the main part of an example:
+In this block, we will review the main part of an example:
 ```go
 header := r.Header.Get("Accept")
 
@@ -202,6 +202,6 @@ Accept: text/plain; q=1,application/xml; q=1;
 ```
 
 ## Conclusion
-Let's try not to forget about the `Accept` header even if this feature is not implemented in the current framework.
+Let's not forget about the `Accept` header even if this feature is not implemented in the current framework.
 
-If you use go and want to work with `Accept` header or mime types in general, you could try [mimeheader](https://github.com/aohorodnyk/mimeheader) library. I believe it will help with the task.
+If you use Golang and want to work with the `Accept` header or mime types in general, you could try [mimeheader](https://github.com/aohorodnyk/mimeheader) library. I believe it will help with the task.

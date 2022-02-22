@@ -8,7 +8,7 @@ aliases: ["/blog/2021-01-03-binary-flags/"]
 mermaid: false
 ---
 ## Introduction
-There are many ways to store flags and use them for communication between `client <-> backend service` or `service <-> service`. In the article, we are going to review the most popular options and we will try to help to choose the correct way for the next project.
+There are many ways to store flags and use them for communication between `client <-> backend service` or `service <-> service`. In the article, we will review the most popular options and try to help to choose the correct way for the next project.
 
 The most popular ways to work with flags are:
 1. Store in separate [column in DB](https://en.wikipedia.org/wiki/Column_(database)) or separate [property in a class/struct](https://en.wikipedia.org/wiki/Property_(programming))
@@ -17,7 +17,7 @@ The most popular ways to work with flags are:
 
 ## Options
 ### Separate field
-It means we would create a separate column in DB for each flag.
+It means we will create a separate column in DB for each flag.
 
 #### DB Example
 In an example, `is_new` will be a flag.
@@ -27,7 +27,7 @@ In an example, `is_new` will be a flag.
 | 2  | test2    | false  |
 
 #### JSON Example
-In a code or a NoSQL database representation would be:
+In a code or a NoSQL database representation will be:
 ```json
 [
 	{
@@ -47,7 +47,7 @@ In a code or a NoSQL database representation would be:
 * Simple to read
 * Simple to understand
 * Self-documented
-* In a code it can represent as typed properties
+* In a code, it can represent as typed properties
 * Simple to convert between different representations, like `struct/class -> JSON -> protobuf -> MsgPack -> DB row -> struct/class`
 * Simple to use in search and aggregation requests in DB (for example by [SQL](https://en.wikipedia.org/wiki/SQL))
 * Can be updated in DB in parallel, by [UPDATE query](https://en.wikipedia.org/wiki/Update_(SQL))
@@ -60,12 +60,12 @@ In a code or a NoSQL database representation would be:
 
 #### Use Cases
 In my opinion, before using this approach, we should answer "yes" for all listed options in the *checklist*:
-* I agree to extend add and remove columns in your database (or add fields to the NoSQL database)?
+* I agree to add and remove columns in your database (or add fields to the NoSQL database)?
 * I understand it could take up resources in DB will be used
 * I do not have memory and traffic sensitive clients or services
 
 ### Store In Array
-In the current implementation, we will store all flags as `strings` in an array.
+In the current implementation, we will store all flags in plain names.
 
 #### DB Example
 In a DB, we are going to store values in a separate table as [one to many relationships](https://en.wikipedia.org/wiki/One-to-many_(data_model)).
@@ -83,10 +83,10 @@ Table `user_flag`
 | 2  | 1       | is_test |
 
 Every `user_flag` row is linked to a row in `user` table by `user_id` field.
-It can be optimized to not store the flag as a string, but in our current topic, it is not so important.
+It can be optimized to not store the flag as a string, but it is not so important in our current topic.
 
 #### JSON Example
-In a code or a NoSQL database representation would be:
+In a code or a NoSQL database representation will be:
 ```json
 
 [
@@ -129,19 +129,19 @@ In my opinion, before using this approach, we should answer "yes" for all listed
 ### Store In Bitmask
 [Bitmask](https://en.wikipedia.org/wiki/Mask_(computing)) is a way when we use [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation) to get access to specific *flag*. Every flag stores in binary data in memory, for example it can be stored in: `byte`, `short`, `int`, `uint`, `long`, `[]byte`, `[]short`, `map[int]byte`, etc.
 
-To see code in action, simply read [README.md from binflags library](https://github.com/aohorodnyk/binflags/blob/main/README.md).
+Simply read [README.md from binflags library](https://github.com/aohorodnyk/binflags/blob/main/README.md).
 
 #### DB Example
-In DB we can store bitmask in various types, like: `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT`, `BIGINT`, `BLOB` types.
+In DB, we can store bitmask in various types, like: `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT`, `BIGINT`, `BLOB` types.
 | id | username | flags  |
 |----|----------|--------|
 | 1  | test1    | 1      |
 | 2  | test2    | 0      |
 
-In the current example, `flags` field has the type `INT` and the first bit is `is_new` flag.
+In the current example, `flags` field has the type `INT`, and the first bit is `is_new` flag.
 
 #### JSON Example
-In a code or a NoSQL database representation would be:
+In a code or a NoSQL database representation will be:
 ```json
 
 [
@@ -165,7 +165,7 @@ In a code or a NoSQL database representation would be:
 * Can be used in a search by DB (but cannot be efficiently used indexes)
 
 #### Cons
-* In some cases flags cannot be updated in parallel
+* In some cases, flags cannot be updated in parallel
 * Cannot search flags by index
 * Have to be documented (name to bit mapping)
 * Should be explained for some people
@@ -176,6 +176,6 @@ In my opinion, before using this approach, we should answer "yes" for all listed
 * I understand all limitations
 
 ## Conclusion
-As we can see, as usual, we do not have *silver bullet* for all use cases and systems. But the provided list of implementations can help to find the best solution for a specific project.
+As we can see, as usual, we do not have a *silver bullet* for all use cases and systems. But the provided list of implementations can help find the best solution for a specific project.
 
 If you want to use the most efficient option in [Go](https://golang.org), I would suggest checking [Go implementation of binary flags for various types](https://github.com/aohorodnyk/binflags).
