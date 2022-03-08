@@ -1,0 +1,7 @@
+tasks:
+  - name: Static Server
+    command: hugo server --disableFastRender
+
+ports:
+  - port: 1313
+    name: Hugo Server
