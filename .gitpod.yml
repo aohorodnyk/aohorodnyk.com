@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: Static Server
-    command: hugo server --disableFastRender
+    command: hugo server --disableFastRender --baseUrl=$(gp url 1313) --appendPort=false
 
 ports:
   - port: 1313
