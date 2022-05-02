@@ -6,7 +6,7 @@ date: "2021-07-27T10:00:00-07:00"
 type: "post"
 mermaid: false
 ---
-## Disclaimer
+## Introduction
 > Small but crucial part for people who wants to choose Kafka as a message queue
 
 Kafka is an excellent tool for data processing in streaming mode. It can help build great tools, especially when analyzing some streaming data (like user analytics, some events, etc. Moreover, Kafka as storage with Kafka streams will help process even some data with "big data".
