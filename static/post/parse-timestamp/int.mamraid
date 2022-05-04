@@ -1,0 +1,15 @@
+flowchart TD
+  Start[JSON field] --> IsInt{Is int}
+  IsInt -- yes --> IsSeconds{Is value < 10^11}
+  IsSeconds -- yes --> ParseSeconds[Parse seconds]
+  ParseSeconds --> Done
+  IsSeconds -- no --> IsMilliseconds{Is value < 10^14}
+  IsMilliseconds -- yes --> ParseMilliseconds[Parse milliseconds]
+  ParseMilliseconds --> Done
+  IsMilliseconds -- no --> IsMicroMicroseconds{Is value < 10^16}
+  IsMicroMicroseconds -- yes --> ParseMicroseconds[Parse microseconds]
+  ParseMicroseconds --> Done
+  IsMicroMicroseconds -- no --> ParseNanoseconds[Parse nanoseconds]
+  ParseNanoseconds --> Done
+  IsInt -- no --> ParseString[Parse string]
+  ParseString --> Done

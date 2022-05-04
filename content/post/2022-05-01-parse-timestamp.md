@@ -30,6 +30,8 @@ But, asr we discussed that this issue have happened multiple time, let's try to 
 
 Before we will start writing code, we need to understand the issue.
 
+First of all, we know
+
 ### Use case with milliseconds instead of seconds in INT field
 
 
