@@ -1,2 +1,4 @@
 github.com/aohorodnyk/lanyon-hugo v0.0.9/go.mod h1:Bj06IBTPUzPF11JMy4uBSYXPcrKO1f8Z3T5+r3y9sbc=
+github.com/aohorodnyk/lanyon-hugo v0.1.0 h1:D7Jb2/WXT/defgoYVariAU+raZRvziojfOTMcTtL39A=
+github.com/aohorodnyk/lanyon-hugo v0.1.0/go.mod h1:X35ihqGMi7Z0oIsK01OMPmWNceZpvWoZ/0SD9fVv05g=
 github.com/mermaid-js/mermaid v8.8.4+incompatible/go.mod h1:pGJSm9DYANtp59DADJgNzFh1uIpkn5xaH3ZBdv1VNTI=
