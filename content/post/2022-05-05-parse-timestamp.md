@@ -305,4 +305,4 @@ I hope this solution will help someone to improve their product and improve user
 
 Do not forget, that every complicated problem can be solved with a simple and efficient[^efficient] solution.
 
-[^efficient] By efficient I mean that the solution has efficient cpu and memory consumption. It will help to save money, improve user and developer experience as well as saving the world by decreasing electrycity consumption.
+[^efficient]: By efficient I mean that the solution has efficient cpu and memory consumption. It will help to save money, improve user and developer experience as well as saving the world by decreasing electrycity consumption.
