@@ -290,11 +290,9 @@ func parseTimestamp(timestamp int64) time.Time {
     return time.Unix(0, timestamp*int64(time.Millisecond))
   case timestamp < maxMicroseconds:
     return time.Unix(0, timestamp*int64(time.Microsecond))
-  case timestamp < maxNanoseconds:
-    return time.Unix(0, timestamp*int64(time.Nanosecond))
   }
 
-  return time.Time{}
+  return time.Unix(0, timestamp)
 }
 ```
 
