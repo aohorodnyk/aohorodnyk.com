@@ -75,7 +75,7 @@ Based on our investigation to fix the issue for the most future cases we need to
 1. As we are fixing the specific use case with a timestamp, we are not going to support all range of possible date times.
     1. We will surely support the range between `1970-04-17T18:02:52Z` and `2262-04-11T23:47:16Z` years.
     1. If you need dates after `2262-04-11T23:47:16Z` year or before `1970-04-17T18:02:52Z`, you will need to adjust the solution for your specific use case.
-    1. We are not going to support negative timestamp. All of them will be parsed as a timestamp in seconds. If you need the negative numbers, you can adjust the solution with the same algorithm.
+    1. Negative values are supported for the timestamp. But they have the same restrictions as positive values. The supported range for the negative values betwee `1969-09-15T22:57:07.963145225-07:00` and `1677-09-20T16:19:45.145224192-07:52`.
 1. We will solve only timestamp parsing issue, without string dates parsing.
 
 [^is_the_most_popular]: I do not have any statistics that proves this claim. These words are based on my own experience.
@@ -241,6 +241,9 @@ func main() {
 }
 ```
 
+With the negative values we will follow the same logic, but we will start from the `math.MinInt64` and go down.
+In the next code snippet with the solution we will see the actual implementation.
+
 As we can see the simple and pretty efficient solution is to just base max timestamps on max int64.
 Let's write the function that will efficiently parse the timestamps independent of the format.
 
@@ -257,11 +260,17 @@ const (
   maxMicroseconds = int64(maxNanoseconds / 1000)
   maxMilliseconds = int64(maxMicroseconds / 1000)
   maxSeconds      = int64(maxMilliseconds / 1000)
+
+  minNanoseconds  = int64(math.MinInt64)
+  minMicroseconds = int64(minNanoseconds / 1000)
+  minMilliseconds = int64(minMicroseconds / 1000)
+  minSeconds      = int64(minMilliseconds / 1000)
 )
 
 func main() {
-  now := time.Now()
-  sec := time.Now().Unix()
+  // Positive time.
+  now := time.Date(2022, time.May, 06, 03, 35, 02, 363368423, time.UTC)
+  sec := now.Unix()
   rfc := parseTimestamp(sec).UTC().Format(time.RFC3339)
   println(sec) // 1651808102
   println(rfc) // 2022-05-06T03:35:02Z
@@ -278,21 +287,51 @@ func main() {
 
   nanosec := now.UnixNano()
   rfc = parseTimestamp(nanosec).UTC().Format(time.RFC3339)
-  println(nanosec) // 1651808102363368000
+  println(nanosec) // 1651808102363368423
   println(rfc)     // 2022-05-06T03:35:02Z
+
+  // Negative time.
+  now = time.Date(1830, time.May, 06, 03, 35, 02, 363368423, time.UTC)
+  sec = now.Unix()
+  rfc = parseTimestamp(sec).UTC().Format(time.RFC3339)
+  println(sec) // -4407164698
+  println(rfc) // 1830-05-06T03:35:02Z
+
+  millisec = now.UnixMilli()
+  rfc = parseTimestamp(millisec).UTC().Format(time.RFC3339)
+  println(millisec) // -4407164697637
+  println(rfc)      // 1830-05-06T03:35:02Z
+
+  microsec = now.UnixMicro()
+  rfc = parseTimestamp(microsec).UTC().Format(time.RFC3339)
+  println(microsec) // -4407164697636632
+  println(rfc)      // 1830-05-06T03:35:02Z
+
+  nanosec = now.UnixNano()
+  rfc = parseTimestamp(nanosec).UTC().Format(time.RFC3339)
+  println(nanosec) // -4407164697636631577
+  println(rfc)     // 1830-05-06T03:35:02Z
 }
 
 func parseTimestamp(timestamp int64) time.Time {
   switch {
+  case timestamp < minMicroseconds:
+    return time.Unix(0, timestamp) // Before 1970 in nanoseconds.
+  case timestamp < minMilliseconds:
+    return time.Unix(0, timestamp*int64(time.Microsecond)) // Before 1970 in microseconds.
+  case timestamp < minSeconds:
+    return time.Unix(0, timestamp*int64(time.Millisecond)) // Before 1970 in milliseconds.
+  case timestamp < 0:
+    return time.Unix(timestamp, 0) // Before 1970 in seconds.
   case timestamp < maxSeconds:
-    return time.Unix(timestamp, 0)
+    return time.Unix(timestamp, 0) // After 1970 in seconds.
   case timestamp < maxMilliseconds:
-    return time.Unix(0, timestamp*int64(time.Millisecond))
+    return time.Unix(0, timestamp*int64(time.Millisecond)) // After 1970 in milliseconds.
   case timestamp < maxMicroseconds:
-    return time.Unix(0, timestamp*int64(time.Microsecond))
+    return time.Unix(0, timestamp*int64(time.Microsecond)) // After 1970 in microseconds.
   }
 
-  return time.Unix(0, timestamp)
+  return time.Unix(0, timestamp) // After 1970 in nanoseconds.
 }
 ```
 
