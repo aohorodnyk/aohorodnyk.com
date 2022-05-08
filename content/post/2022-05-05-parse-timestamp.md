@@ -276,9 +276,9 @@ func main() {
   println(microsec) // 1651808102363368
   println(rfc)      // 2022-05-06T03:35:02Z
 
-  nanosec := now.UnixMicro()
+  nanosec := now.UnixNano()
   rfc = parseTimestamp(nanosec).UTC().Format(time.RFC3339)
-  println(nanosec) // 1651808102363368
+  println(nanosec) // 1651808102363368000
   println(rfc)     // 2022-05-06T03:35:02Z
 }
 
