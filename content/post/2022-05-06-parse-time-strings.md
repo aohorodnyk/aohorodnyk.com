@@ -15,7 +15,7 @@ Obviously we hardcoded some solution to support the specific format on a server 
 
 Let's implement the solution!
 
-> I'll use [Golang](https://go.dev/) for all code examples, but you can use any other language base on the provided algorithm.
+> I'll use [Golang](https://go.dev/) for all code examples, but you can use any other languages base on the provided algorithm.
 
 ## Issue overview
 
@@ -35,7 +35,7 @@ There are our expectations:
 
 What do we unexpectedly see in our logs:
 
-* In the log we have found a error like `0001-01-01 00:00:00 +0000 UTC parsing time "Sat, 07 May 2022 19:22:10 PDT" as "2006-01-02 15:04:05": cannot parse "Sat, 07 May 2022 19:22:10 PDT" as "2006"`
+* In the log we have found an error like `0001-01-01 00:00:00 +0000 UTC parsing time "Sat, 07 May 2022 19:22:10 PDT" as "2006-01-02 15:04:05": cannot parse "Sat, 07 May 2022 19:22:10 PDT" as "2006"`
 * And also we have found this type of errors `0001-01-01 00:00:00 +0000 UTC parsing time "05/07 07:22:54PM '22 -0700" as "2006-01-02 15:04:05": cannot parse "7 07:22:54PM '22 -0700" as "2006"`
 
 ### Possible wrong formats
@@ -73,7 +73,7 @@ Before we start writing code, we need to do some preparations.
 ### How to parse the date time in Golang
 
 Fortunately, Golang supports pretty simple API to parse the date time from a string in different formats.
-However, It has pretty unusual layout's format.
+However, It has unusual layout's format.
 
 To parse the date time, we need to use `time.Parse` function.
 
@@ -94,7 +94,7 @@ func main() {
 
 In the example above, we parse the current date time in `RFC3339` format that contains the layout `2006-01-02T15:04:05Z07:00`.
 As we can see, in golang we use the specific time date as a layout to specify the format that we will parse.
-It's pretty unusual, but since we are not going to write our own formats, our task will not require detailed knowledge of these internal implementations.
+It's unusual, but since we are not going to write our own formats, the task will not require detailed knowledge of these internal implementations.
 
 As we can see, there are two different parameters returned from `time.Parse` function: `time` and `error`.
 If `error` is nil, then we sucessfully parsed the date time, otherwise something went wrong.
@@ -116,7 +116,7 @@ func main() {
 }
 ```
 
-As w can see in the output, we got an empty date time `0001-01-01 00:00:00 +0000 UTC` and an error `parsing time "Sat, 07 May 2022 20:09:12 PDT" as "2006-01-02T15:04:05Z07:00": cannot parse "Sat, 07 May 2022 20:09:12 PDT" as "2006"` about wrong format.
+As we can see in the output, we got an empty date time `0001-01-01 00:00:00 +0000 UTC` and an error `parsing time "Sat, 07 May 2022 20:09:12 PDT" as "2006-01-02T15:04:05Z07:00": cannot parse "Sat, 07 May 2022 20:09:12 PDT" as "2006"` about wrong format.
 
 We will use this behavior to parse the date time in different formats.
 
@@ -158,10 +158,10 @@ For implementation we will use the simplest possible algorithm:
 
 1. Iterate over all supported formats.
 1. Parse the receved string with the current format.
-1. If the returned error is equal to `nil`, then we found the correct format and we can return from the function.
+1. If the returned error is equal to `nil`, then we found the correct format. We can return from the function.
 1. Otherwise, we need to continue the iteration.
 
-Let's write the code:
+The intermediate solution:
 
 ```go
 package main
@@ -198,10 +198,10 @@ func parseTime(dt string) (time.Time, error) {
 
 In the code with the example we iterated over two formats: `RFC3339` and `RFC1123`. We wrote the test where we tried to parse three different formats with the same date time string. As we can see both supported formats are parsed correctly.
 
-There is the limitation that we can recognize based on the above example: we can't parse sequantly formats that are subormats of the next format.
-So, we need to make sure that we provide in the list formats from the most specific to the most general.
+There is the limitation that we can recognize based on the above example: we can't parse sequantly formats that are sub-formats of the next format.
+So, we need to be sure that we provide time layouts in the list formats from the most specific to the most general.
 
-Let's try to write the function that will cover all requirements we already specified:
+Implementing the function that will cover all requirements we already specified:
 
 ```go
 package main
@@ -264,15 +264,15 @@ func parseTime(formats []string, dt string) (time.Time, error) {
 }
 ```
 
-As usual we can see the implementation with all possible test cases to make sure that our algorithm is correct and it supports all required formats.
+Usually we see the implementation with all possible test cases to be sure that our algorithm is correct and it supports all required formats.
 
-Looks like all formats were pearsed without any issues and we will assume that this algorithm is correct and we can use it in our application.
+Looks like all formats were parsed without any issues and we will assume that this algorithm is correct and usable for our application.
 
 ## Conclusion
 
 In this article we solved one more issue related to parsing date time string.
-Now we can assume that our clients are more covered and safe with all predefined formats.
+Now we can assume that our clients are covered and safe with all predefined formats.
 
-Current implementation can be used without any restrictions in all your projects. But, do not forget, please, to make sure that you are covered all required formats for your business. Probably, you will need to add more formats to the list.
+Current implementation can be used without any restrictions in all your projects. But, pay more attention that you covered all required formats by your business. Probably, you will need to add more formats to the list.
 
 I hope this article will save some time for you.
