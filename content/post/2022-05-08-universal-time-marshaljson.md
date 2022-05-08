@@ -1,5 +1,5 @@
 ---
-title: "Unversal time UnmarshalJSON implementation"
+title: "Universal time UnmarshalJSON implementation"
 description: "The final implementation for the unviersal time parser that implements the UnmarshalJSON interface"
 author: "Anton Ohorodnyk"
 date: "2022-05-08T13:01:24-07:00"
@@ -10,7 +10,7 @@ type: "post"
 We have done with two complecated steps:
 
 1. Wrote a function that [parses time from different timestamp formats]({{< ref "/post/2022-05-06-parse-timestamp" >}}).
-1. Wrote a function that [parses time from different non timestamp formats like RFC3339]({{< ref "/post/2022-05-07-parse-time-strings" >}})
+1. Wrote a function that [parses time from different non timestamp formats like RFC3339]({{< ref "/post/2022-05-07-parse-time-strings" >}}).
 
 The next and final step will be to write a real world function that solves the real and actual problem.
 We need to parse the JSON field from different formats with different data types.
