@@ -4,6 +4,7 @@ description: "Parse timestamp from different clients and from different develope
 author: "Anton Ohorodnyk"
 date: "2022-05-06T03:46:23Z"
 type: "post"
+aliases: ["/post/2022-05-05-parse-timestamp/"]
 ---
 ## Introduction
 

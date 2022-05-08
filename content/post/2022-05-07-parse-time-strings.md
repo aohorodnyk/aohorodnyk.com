@@ -4,10 +4,11 @@ description: "Parse timestamp from different clients and from different develope
 author: "Anton Ohorodnyk"
 date: "2022-05-07T20:48:20-07:00"
 type: "post"
+aliases: ["/post/2022-05-06-parse-time-strings/"]
 ---
 ## Introduction
 
-In previous article, we implemented the efficient solution to parse timestamps in [different timestamp formats (seconds, milliseconds, microseconds, nanoseconds)]({{< ref "/post/2022-05-05-parse-timestamp" >}} "Parse timestamp formats").
+In previous article, we implemented the efficient solution to parse timestamps in [different timestamp formats (seconds, milliseconds, microseconds, nanoseconds)]({{< ref "/post/2022-05-06-parse-timestamp" >}} "Parse timestamp formats").
 
 As I mentioned in the previous article, we can receive a string formatted date time from a client, when we expected string timestamp in seconds.
 
