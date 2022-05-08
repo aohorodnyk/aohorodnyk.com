@@ -1,10 +1,9 @@
 ---
-title: "Parse timestamp on backend"
+title: "Parse timestamp formats"
 description: "Parse timestamp from different clients and from different developers"
 author: "Anton Ohorodnyk"
 date: "2022-05-06T03:46:23Z"
 type: "post"
-mermaid: false
 ---
 ## Introduction
 

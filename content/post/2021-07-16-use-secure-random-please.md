@@ -4,7 +4,6 @@ description: "Small suggestion that can safe any application."
 author: "Anton Ohorodnyk"
 date: "2021-07-16T21:16:29-07:00"
 type: "post"
-mermaid: false
 ---
 ## Introduction
 The current article is an introductory article about the practical usage of different generators in standard libraries of other languages. It is the reason we do not explore different pseudo-random algorithms.

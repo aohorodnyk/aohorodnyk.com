@@ -5,7 +5,6 @@ author: "Anton Ohorodnyk"
 date: "2021-07-03T19:09:05-07:00"
 type: "post"
 aliases: ["/blog/2021-07-03-mime-headers/"]
-mermaid: false
 ---
 ## Introduction
 It's not evident that the `Accept` header is an essential part of HTTP, especially REST communication.

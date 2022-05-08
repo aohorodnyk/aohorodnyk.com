@@ -4,7 +4,6 @@ description: "Small, but the significant part for people who wants to choose Kaf
 author: "Anton Ohorodnyk"
 date: "2021-07-27T10:00:00-07:00"
 type: "post"
-mermaid: false
 ---
 ## Introduction
 > Small but crucial part for people who wants to choose Kafka as a message queue

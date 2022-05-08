@@ -5,7 +5,6 @@ author: "Anton Ohorodnyk"
 date: "2021-01-03T19:13:42-07:00"
 type: "post"
 aliases: ["/blog/2021-01-03-binary-flags/"]
-mermaid: false
 ---
 ## Introduction
 There are many ways to store flags and use them for communication between `client <-> backend service` or `service <-> service`. In the article, we will review the most popular options and try to help to choose the correct way for the next project.
