@@ -1,6 +1,6 @@
 ---
-title: "Parse time from different non timestamp formats"
-description: "Parse timestamp from different clients and from different developers"
+title: "Unversal time UnmarshalJSON implementation"
+description: "The final implementation for the unviersal time parser that implements the UnmarshalJSON interface"
 author: "Anton Ohorodnyk"
 date: "2022-05-08T13:01:24-07:00"
 type: "post"
