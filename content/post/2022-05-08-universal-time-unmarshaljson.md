@@ -4,13 +4,14 @@ description: "The final implementation for the unviersal time parser that implem
 author: "Anton Ohorodnyk"
 date: "2022-05-08T13:01:24-07:00"
 type: "post"
+aliases: ["/post/2022-05-08-universal-time-marshaljson/"]
 ---
 ## Introduction
 
-We have done with two complecated steps:
+We have done with two complecated steps by writing the parsers for different date time formats:
 
-1. Wrote a function that [parses time from different timestamp formats]({{< ref "/post/2022-05-06-parse-timestamp" >}}).
-1. Wrote a function that [parses time from different non timestamp formats like RFC3339]({{< ref "/post/2022-05-07-parse-time-strings" >}}).
+1. [Time from timestamp formats]({{< ref "/post/2022-05-06-parse-timestamp" >}}).
+1. [Time from non timestamp formats like RFC3339]({{< ref "/post/2022-05-07-parse-time-strings" >}}).
 
 The next and final step will be to write a real world function that solves the real and actual problem.
 We need to parse the JSON field from different formats with different data types.
@@ -56,7 +57,7 @@ Based on the above use cases, we expect to see the following list of JSON fields
 }
 ```
 
-Obviously, it's not full list of types, but as we already tests more complete list of cases before, we can simplify it right now.
+Obviously, it's not full list of types, but as we already tested comprehensive list of cases before, we can simplify it right now.
 
 We added hex seconds field, just in to see it works as well, because of the magic of `strconv.ParseInt` function.
 
