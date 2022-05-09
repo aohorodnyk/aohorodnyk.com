@@ -15,22 +15,24 @@ We have done with two complecated steps:
 The next and final step will be to write a real world function that solves the real and actual problem.
 We need to parse the JSON field from different formats with different data types.
 
-And, as usual, I will go though couple of investigation steps before we will write the real code.
+I will go though couple of investigation steps before we will write the real code.
 
 > I'll use [Golang](https://go.dev/) for all code examples, but you can use any other languages base on the provided algorithm.
 
 ## Task overview
 
 Current task is to write a Golang type that can be used in JSON parsing pipeline.
-This field should support couple of use cases that we already reviewed in previous articles:
+This field should support couple of use cases that we already reviewed in previous articles.
 
-1. We received a JSON field with numeric type and we expect to parse it as a some type to timestamp.
-1. We received a JSON field with string type and we expect to parse it as a some type to timestamp.
-1. We received a JSON field with string type and we expect to parse it as a some layout from the provided list.
+We received a JSON field with:
+
+1. Numeric types and we expect to parse it as a timestamp.
+1. String type and we expect to parse it as a timestamp.
+1. String type and we expect to parse it as a some layout from the provided list.
 
 ### Expectations
 
-Based on the above use cases, we expect the see the following list of JSON fields:
+Based on the above use cases, we expect to see the following list of JSON fields:
 
 ```json
 {
@@ -54,7 +56,7 @@ Based on the above use cases, we expect the see the following list of JSON field
 }
 ```
 
-Obviously it's not full list of types, but as we already tests more complete list of cases before, we can simplify it right now.
+Obviously, it's not full list of types, but as we already tests more complete list of cases before, we can simplify it right now.
 
 We added hex seconds field, just in to see it works as well, because of the magic of `strconv.ParseInt` function.
 
@@ -65,7 +67,7 @@ Before the implementation we need to consider the Golang way of custom JSON data
 Golang contains the interface [Unmarshaler](https://pkg.go.dev/encoding/json#Unmarshaler) with one method `UnmarshalJSON([]byte) error`.
 It means that we need to implement only one method to parse the JSON field.
 
-There is an example of the simple implementation of the interface where we just need to separate the string in a JSON field to 2 variables separated by underscore `_`:
+There is an example of the simple implementation of the interface where we just need to separate the string with a value separated by underscore `_` in a JSON field to 2 variables:
 
 ```go
 package main
@@ -133,7 +135,7 @@ main.main()
 exit status 2
 ```
 
-As we can see it parsed first input, but failed on the second input.
+The first input parsed correctly, but the second one failed.
 
 ## Implementation
 
@@ -152,7 +154,7 @@ The final implementation will contain the following steps:
 1. If we successfuly parse the string as a timestamp, then set the time and finish the processing.
 1. Otherwise return the error.
 
-The next code implements the algorithm described above.
+The following code example implements the algorithm described above.
 
 ```go
 package main
@@ -325,11 +327,13 @@ func parseTime(formats []string, dt string) (time.Time, error) {
 }
 ```
 
-The above code provides positive test cases that proves the algorithm works and implementation are correct.
+The above code covers positive test cases and proves the algorithm works without any issues and implementation is correct.
 
 ## Conclusion
 
-In the latest three articles we wrote the universal time parser that can be used to improve clients' developer experience.
-It will also decrease amount of production bugs and errors.
+In the latest three articles we implemented the universal time parser that can be used to improve clients' developer experience.
+It can help to decrease amount of production bugs and errors.
 
 I hope these articles will be helpful to you and your team.
+
+Fill free to ask any question you might have.
