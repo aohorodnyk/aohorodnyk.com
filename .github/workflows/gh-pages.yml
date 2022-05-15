@@ -25,3 +25,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+      - name: Purge cache
+        uses: aorfanos/cloudflare-purge-action@v1.0.3
+        if: success()
+        with:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          CF_ZONE_NAME: ${{ secrets.CLOUDFLARE_ZONE_NAME }}
