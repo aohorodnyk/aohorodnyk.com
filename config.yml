@@ -1,4 +1,4 @@
-baseurl: "https://www.aohorodnyk.com/"
+baseurl: "https://aohorodnyk.com/"
 DefaultContentLanguage: en
 title: Anton Ohorodnyk
 theme: "github.com/aohorodnyk/lanyon-hugo"
