@@ -1,0 +1,34 @@
+{
+  "name": "aohorodnyk.com",
+  "version": "1.0.0",
+  "description": "My personal aohorodnyk.com website built on top of hugo. package.json is used to download node_modules",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aohorodnyk/aohorodnyk.com.git"
+  },
+  "author": "aohorodnyk",
+  "bugs": {
+    "url": "https://github.com/aohorodnyk/aohorodnyk.com/issues"
+  },
+  "dependencies": {
+    "@lottiefiles/lottie-player": "1.5.7",
+    "bootstrap": "5.2.1",
+    "boxicons": "2.1.2",
+    "cleave.js": "1.6.0",
+    "imagesloaded": "5.0.0",
+    "img-comparison-slider": "7.7.2",
+    "jarallax": "2.0.4",
+    "lightgallery": "2.6.0",
+    "nouislider": "15.6.1",
+    "parallax-js": "3.1.0",
+    "prismjs": "1.29.0",
+    "rellax": "1.12.1",
+    "shufflejs": "6.1.0",
+    "smooth-scroll": "16.1.3",
+    "swiper": "8.3.2",
+    "vanilla-tilt": "1.7.2"
+  }
+}
