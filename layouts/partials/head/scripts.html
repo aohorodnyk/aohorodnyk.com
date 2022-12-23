@@ -3,6 +3,21 @@
 
 {{- $jsSlice := slice $js -}}
 
+{{- /* Include libraries */ -}}
+{{- $jsBundle := slice -}}
+{{- $jsScript := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
+{{- $jsScript = resources.Get "node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
+{{- $jsScript = resources.Get "node_modules/rellax/rellax.min.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
+{{- $jsScript = resources.Get "node_modules/@lottiefiles/lottie-player/dist/lottie-player.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
+{{- $jsScript = resources.Get "node_modules/swiper/swiper-bundle.min.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
+
+{{- $jsSlice = $jsBundle | append $jsSlice -}}
+
 {{- /* Calculate hash */ -}}
 {{- $scriptsHashSource := $jsSlice | resources.Concat "/tmp/fingerprint_main_js.js" | resources.Minify | resources.Fingerprint "sha512" -}}
 {{- $scriptsHash := md5 $scriptsHashSource.Data.Integrity -}}

@@ -1,0 +1,18 @@
+<script type="text/javascript">
+  function identifyAndSetColorScheme() {
+    const root = document.getElementsByTagName('html')[0];
+    const darkModeClass = 'dark-mode';
+    const mode = window.localStorage.getItem('mode');
+    if (mode === 'dark') {
+      root.classList.add(darkModeClass);
+    } else if (mode === 'light') {
+      root.classList.remove(darkModeClass);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.classList.add(darkModeClass);
+    } else {
+      root.classList.remove(darkModeClass);
+    }
+  }
+
+  identifyAndSetColorScheme();
+</script>
