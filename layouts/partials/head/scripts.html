@@ -1,0 +1,23 @@
+{{- $js := resources.Get "silicon/js/main.js" -}}
+{{- $js = $js | js.Build -}}
+
+{{- $jsSlice := slice $js -}}
+
+{{- /* Calculate hash */ -}}
+{{- $scriptsHashSource := $jsSlice | resources.Concat "/tmp/fingerprint_main_js.js" | resources.Minify | resources.Fingerprint "sha512" -}}
+{{- $scriptsHash := md5 $scriptsHashSource.Data.Integrity -}}
+
+{{- $buildName := "/main.js" -}}
+{{- if eq hugo.Environment "production" -}}
+  {{- /* Name js file on production as {hash}.js */ -}}
+  {{- $buildName = print $scriptsHash ".js" -}}
+{{- end -}}
+{{- $script := $jsSlice | resources.Concat $buildName -}}
+
+{{- /* Production preparation */ -}}
+{{- if eq hugo.Environment "production" -}}
+  {{- $script = $script | resources.Minify -}}
+{{- end -}}
+
+<link rel="preload" href="{{ $script.RelPermalink }}" as="script" />
+<script type="text/javascript" src="{{ $script.RelPermalink }}" crossorigin="anonymous"  defer ></script>

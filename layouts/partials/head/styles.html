@@ -1,0 +1,23 @@
+{{- $main := resources.Get "silicon/styles/main.scss" -}}
+{{- $main = $main | resources.ToCSS -}}
+
+{{- $styleSlice := slice $main -}}
+
+{{- /* Calculate hash */ -}}
+{{- $stylesHashSource := $styleSlice | resources.Concat "/tmp/fingerprint_main_css.css" | resources.Minify | resources.Fingerprint "sha512" -}}
+{{- $stylesHash := md5 $stylesHashSource.Data.Integrity -}}
+
+{{- $buildName := "/main.css" -}}
+{{- if eq hugo.Environment "production" -}}
+  {{- /* Name css file on production as {hash}.css */ -}}
+  {{- $buildName = print $stylesHash ".css" -}}
+{{- end -}}
+{{- $style := $styleSlice | resources.Concat $buildName -}}
+
+{{- /* Production preparation */ -}}
+{{- if eq hugo.Environment "production" -}}
+  {{- $style = $style | resources.Minify -}}
+{{- end -}}
+
+<link rel="preload" href="{{ $style.RelPermalink }}" as="style" />
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" crossorigin="anonymous" />
