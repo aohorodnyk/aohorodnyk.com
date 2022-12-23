@@ -2,3 +2,11 @@ baseurl: "https://aohorodnyk.com/"
 DefaultContentLanguage: en
 title: Anton Ohorodnyk
 pygmentsUseClasses: true
+
+Params:
+  ShortName: AOhorodnyk
+
+build:
+  noJSConfigInAssets: true
+  useResourceCacheWhen: fallback
+  writeStats: false
