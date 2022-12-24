@@ -19,5 +19,4 @@
   {{- $style = $style | resources.Minify -}}
 {{- end -}}
 
-<link rel="preload" href="{{ $style.RelPermalink }}" as="style" />
-<link rel="stylesheet" href="{{ $style.RelPermalink }}" crossorigin="anonymous" />
+<link rel="preload" href="{{ $style.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>

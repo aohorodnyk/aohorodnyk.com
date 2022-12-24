@@ -34,5 +34,4 @@
   {{- $script = $script | resources.Minify -}}
 {{- end -}}
 
-<link rel="preload" href="{{ $script.RelPermalink }}" as="script" />
-<script type="text/javascript" src="{{ $script.RelPermalink }}" crossorigin="anonymous"  defer ></script>
+<script type="text/javascript" src="{{ $script.RelPermalink }}" crossorigin="anonymous" async ></script>

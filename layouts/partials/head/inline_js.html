@@ -1,3 +1,4 @@
+{{- /* Scheme color mode light/dark */ -}}
 <script type="text/javascript">
   let mode = 'light';
   function identifyAndSetColorScheme() {
@@ -18,4 +19,17 @@
   }
 
   identifyAndSetColorScheme();
+</script>
+
+{{- /* Page loading script */ -}}
+<script type="text/javascript">
+  (function () {
+    window.onload = function () {
+      const preloader = document.querySelector('.page-loading');
+      preloader.classList.remove('active');
+      setTimeout(function () {
+        preloader.remove();
+      }, 1000);
+    };
+  })();
 </script>

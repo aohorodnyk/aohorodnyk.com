@@ -1,5 +1,8 @@
 <title>{{ if .Page.Title }} {{ .Page.Title }} | {{ end }}{{ .Site.Title }}</title>
 
+{{ partial "head/inline_js.html" . }}
+{{ partial "head/inline_css.html" . }}
+
 {{ partial "head/static.html" . }}
 
 {{ partial "head/styles.html" . }}
@@ -7,5 +10,3 @@
 {{ partial "head/favicon.html" . }}
 
 {{ partial "head/scripts.html" . }}
-
-{{ partial "head/inline_js.html" . }}
