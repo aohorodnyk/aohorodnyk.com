@@ -1,4 +1,9 @@
-// 
+//
 // user.scss
 // Use this to write your custom SCSS
 //
+
+// Invert logo color in dark mode.
+.dark-mode main.page-wrapper header.header .navbar-brand img {
+  filter: invert(100%);
+}
