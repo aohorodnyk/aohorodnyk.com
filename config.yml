@@ -3,7 +3,31 @@ DefaultContentLanguage: en
 title: Anton Ohorodnyk
 pygmentsUseClasses: true
 
-Params:
+menus:
+  main:
+    - title: Home page
+      name: Home
+      url: /
+      weight: 100
+    - title: About the author
+      name: Blog
+      url: '#'
+      weight: 200
+      identifier: blog
+    # Blog page sub-menus.
+    - title: About the author
+      name: Posts
+      url: /blog/
+      parent: blog
+      weight: 100
+    - title: About the author
+      name: Archive
+      url: /blog/
+      parent: blog
+      weight: 200
+
+
+params:
   ShortName: AOhorodnyk
 
 build:
