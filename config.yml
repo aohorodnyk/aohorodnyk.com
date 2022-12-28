@@ -7,22 +7,22 @@ menus:
   main:
     - title: Home page
       name: Home
-      url: /
+      pageref: /
       weight: 100
     - title: About the author
       name: Blog
-      url: '#'
+      pageref: '#'
       weight: 200
       identifier: blog
     # Blog page sub-menus.
     - title: About the author
       name: Posts
-      url: /blog/
+      pageref: /test
       parent: blog
       weight: 100
     - title: About the author
       name: Archive
-      url: /blog/
+      pageref: /blog
       parent: blog
       weight: 200
 

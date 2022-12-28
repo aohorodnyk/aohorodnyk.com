@@ -19,19 +19,19 @@
               {{- if .HasChildren -}}
               <li class="nav-item dropdown">
                 <a href="#"
-                  class="nav-link dropdown-toggle{{if (eq $currentPage.RelPermalink .URL) }} active{{end}}"
+                  class="nav-link dropdown-toggle{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
                   title="{{ .Title }}" data-bs-toggle="dropdown">{{ .Name }}</a>
                   <ul class="dropdown-menu">
                     {{- range .Children -}}
                     <li>
-                      <a href="{{ .URL }}" class="dropdown-item" title="{{ .Title }}">{{ .Name }}</a>
+                      <a href="{{ .URL }}" class="dropdown-item{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" title="{{ .Title }}">{{ .Name }}</a>
                     </li>
                     {{- end -}}
                   </ul>
               </li>
             {{- else -}}
             <li class="nav-item">
-              <a href="{{ .URL }}" class="nav-link {{if (eq $currentPage.RelPermalink .URL) }} active{{end}}"
+              <a href="{{ .URL }}" class="nav-link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
                 title="{{ .Title }}">{{ .Name }}</a>
             </li>
             {{- end -}}
@@ -51,19 +51,19 @@
     </div>
   </header>
 
-  <section class="dark-mode vh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
+  <section class="vh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
     fwefgwefgewtgwetfwetf
     {{ .Content }}
     wetfwetfwetwet
   </section>
 
-  <section class="dark-mode vh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
+  <section class="vh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
     fwefgwefgewtgwetfwetf
     {{ .Content }}
     wetfwetfwetwet
   </section>
 
-  <section class="dark-mode vh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
+  <section class="pagerefvh-100 bg-repeat-0 bg-position-center bg-size-cover overflow-hidden">
     fwefgwefgewtgwetfwetf
     {{ .Content }}
     wetfwetfwetwet
