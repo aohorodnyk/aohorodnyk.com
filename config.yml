@@ -28,7 +28,8 @@ menus:
 
 
 params:
-  ShortName: AOhorodnyk
+  ShortName: Anton O
+  logo: /favicon/safari-pinned-tab.svg
 
 build:
   noJSConfigInAssets: true

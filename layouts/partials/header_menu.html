@@ -1,0 +1,49 @@
+<header class="header navbar navbar-expand-lg">
+  <div class="container px-3">
+    <a href="/" class="navbar-brand pe-3">
+      <img src="{{ .Site.Params.Logo }}" width="47" alt="{{ .Site.Title }}">
+      {{ .Site.Params.ShortName }}
+    </a>
+    <div id="navbarNav" class="offcanvas offcanvas-end">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {{- $currentPage := . }}
+          {{- range .Site.Menus.main -}}
+            {{- if .HasChildren -}}
+            <li class="nav-item dropdown">
+              <a href="#"
+                class="nav-link dropdown-toggle{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
+                title="{{ .Title }}" data-bs-toggle="dropdown">{{ .Name }}</a>
+                <ul class="dropdown-menu">
+                  {{- range .Children -}}
+                  <li>
+                    <a href="{{ .URL }}" class="dropdown-item{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" title="{{ .Title }}">{{ .Name }}</a>
+                  </li>
+                  {{- end -}}
+                </ul>
+            </li>
+          {{- else -}}
+          <li class="nav-item">
+            <a href="{{ .URL }}" class="nav-link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
+              title="{{ .Title }}">{{ .Name }}</a>
+          </li>
+          {{- end -}}
+          {{- end -}}
+        </ul>
+      </div>
+    </div>
+    <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+      <input type="checkbox" class="form-check-input" id="theme-mode">
+      <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+      <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+    </div>
+    <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</header>

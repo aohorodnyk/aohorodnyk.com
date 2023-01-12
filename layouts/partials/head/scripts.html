@@ -15,6 +15,8 @@
 {{- $jsBundle = $jsBundle | append $jsScript -}}
 {{- $jsScript = resources.Get "node_modules/swiper/swiper-bundle.min.js" -}}
 {{- $jsBundle = $jsBundle | append $jsScript -}}
+{{- $jsScript = resources.Get "node_modules/parallax-js/dist/parallax.min.js" -}}
+{{- $jsBundle = $jsBundle | append $jsScript -}}
 
 {{- $jsSlice = $jsBundle | append $jsSlice -}}
 
