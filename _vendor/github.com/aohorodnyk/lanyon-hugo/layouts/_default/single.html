@@ -7,12 +7,7 @@
     {{ .TableOfContents }}
     <hr />
   {{ end }}
-  {{ .Content }}
-  {{- if .Site.DisqusShortname -}}
-  <hr>
-  <h2>Comments</h2>
-  {{ template "_internal/disqus.html" . }}
-  {{ end -}}
+  {{ partial "content.html" . }}
 </div>
 
 {{ partial "default_foot.html" . }}

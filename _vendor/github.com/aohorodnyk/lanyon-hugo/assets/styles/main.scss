@@ -37,3 +37,15 @@ div.post {
     }
   }
 }
+
+h1, h2, h3, h4, h5, h6 {
+    .content-header-hanchor {
+      display: none;
+    }
+
+    &:hover {
+      .content-header-hanchor {
+        display: inline;
+      }
+    }
+  }
