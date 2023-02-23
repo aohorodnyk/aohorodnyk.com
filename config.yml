@@ -8,17 +8,16 @@ menus:
   main:
     - title: Full list of posts
       name: Home
-      url: /
+      pageref: /
       weight: 100
     - title: About the author
       name: About
-      url: /about/
+      pageref: /about/
       weight: 200
 
 params:
   author: Anton Ohorodnyk
-  description: Only my private opinion
-  title: Some private opinion
+  title: Anton Ohorodnyk
   customCSS:
     - css/site.css
   favicon:

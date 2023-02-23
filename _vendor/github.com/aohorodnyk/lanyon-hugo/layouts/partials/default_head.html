@@ -4,19 +4,21 @@
   {{ partial "head.html" . }}
 
   <body>
-
-    {{ partial "sidebar.html" . }}
-
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
     <div class="wrap">
-      <div class="masthead">
+      <header class="masthead">
         <div class="container">
           <h3 class="masthead-title">
             <a href="/">{{ .Site.Params.Title }}</a>
-            <small>{{ .Site.Params.Tagline }}</small>
           </h3>
+          <nav class="header-nav">
+            {{- $currentPage := . }}
+            {{- range .Site.Menus.main -}}
+            <a class="header-nav-item{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+            {{- end -}}
+          </nav>
         </div>
-      </div>
+      </header>
 
       <div class="container content">
