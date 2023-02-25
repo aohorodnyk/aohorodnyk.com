@@ -21,10 +21,10 @@ My name is Anton Ohorodnyk[^contacts]. I have a Master’s degree in Software En
 
 I have commercial experience as a software engineer since 2009.
 
-My favorite programming language is [Go](https://golang.org/). However, I believe that every developer must explore various paradigms and languages to have the ability to make the best contribution for every task/product. Therefore, I am open to doing my job in multiple languages if required by task and business.
+My favorite programming language is [Go](https://go.dev/). However, I believe that every developer must explore various paradigms and languages to have the ability to make the best contribution for every task/product. Therefore, I am open to doing my job in multiple languages if required by task and business.
 
 ## Content
 
 The main goal for this blog is to share my private opinion about some questions I worry about. I hope every article will be helpful for someone. If you want to reach me out, use any way you can find.
 
-[^contacts]: [Resume](https://anton.ohorodnyk.name/Anton%20Ohorodnyk.pdf) - [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [DEV](https://dev.to/aohorodnyk) - [Email](mailto:anton@ohorodnyk.name) - [Wesite](https://ohorodnyk.name)
+[^contacts]: [Resume](/Anton%20Ohorodnyk.pdf) - [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [Email](mailto:anton@ohorodnyk.name)
