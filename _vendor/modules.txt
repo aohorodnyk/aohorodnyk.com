@@ -1,1 +1,1 @@
-# github.com/aohorodnyk/lanyon-hugo v0.2.1
+# github.com/aohorodnyk/lanyon-hugo v0.2.3
