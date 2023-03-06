@@ -1,7 +1,7 @@
 module github.com/aohorodnyk/anton.ohorodnyk.name
 
-go 1.16
+go 1.20
 
 require (
-	github.com/aohorodnyk/lanyon-hugo v0.2.3
+	github.com/aohorodnyk/lanyon-hugo v0.2.4
 )
