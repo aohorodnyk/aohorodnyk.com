@@ -26,7 +26,7 @@ Verbosity and type conversion parts will discuss in future articles. However, me
 
 ### Memory management
 
-When dynamic languages were involved, all static languages required co-manage memory manually. Every developer had to consider array sizes, resizing, memory cleaning, etc.
+When dynamic languages were involved, all static languages required co-manage memory manually. Every developer had to consider an array size, resizing, memory cleaning, etc.
 
 Currently, every language (including C++) provides a way how to almost or entirely avoid memory management in these ways:
 
@@ -80,13 +80,13 @@ func main() {
 }
 ```
 
-As we can see, we created a slice with zero sizes. After that, we extended it from zero elements up to 10. After that, we had no issues adding one or hundreds of more pieces.
+As we can see, we created a slice with zero size. After that, we extended it from zero elements up to 10. After that, we had no issues adding one or hundreds of more pieces.
 
 ## Performance improvements
 
 As we saw above, dynamic structures like `slice`[^slice] improve our life quality and help us write code comparably fast as on dynamic languages.
 
-The example above provided an example where we created a slice with 0 sizes and allocated it up to ten elements. However, there is a minor performance issue here. However, we knew the expected size (in our use case, it was ten elements), so we could preallocate the slice and improve performance.
+The example above provided an example where we created a slice with zero size and allocated it up to ten elements. However, there is a minor performance issue here. However, we knew the expected size (in our use case, it was ten elements), so we could preallocate the slice and improve performance.
 
 Let's create a small benchmark to see the difference between preallocated and non-allocated slices in Go:
 
