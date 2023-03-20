@@ -9,11 +9,11 @@ layout: "about"
 
 ## Welcome
 
-Hi, you are on a purely minimalistic and clear website.
+Welcome to a website that celebrates simplicity and clarity.
 
-Multiple beautiful designs have been implemented for my blog. They made me busy improving them because I wanted to have a minimalistic design to read articles but not sell something.
+Here you will find articles that are easy to read and enjoyable to explore. I have experimented with different designs for my blog, but I always come back to the minimalistic style that lets the content shine.
 
-The result of multiple tests can see on this website.
+This website is the result of my passion for creating and sharing.
 
 ## About me
 
@@ -25,6 +25,6 @@ My favorite programming language is [Go](https://go.dev/). However, I believe t
 
 ## Content
 
-The main goal for this blog is to share my private opinion about some questions I worry about. I hope every article will be helpful for someone. If you want to reach me out, use any way you can find.
+This blog is my personal space where I express my thoughts and feelings on various topics that matter to me. I hope that by sharing my perspective, I can inspire, inform or entertain someone who reads my articles. If you want to connect with me, feel free to reach out through any of the channels available.
 
 [^contacts]: [Resume](/Anton%20Ohorodnyk.pdf) - [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [Email](mailto:me@aohorodnyk.com)
