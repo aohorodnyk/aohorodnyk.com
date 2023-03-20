@@ -17,11 +17,11 @@ This website is the result of my passion for creating and sharing.
 
 ## About me
 
-My name is Anton Ohorodnyk[^contacts]. I have a Master’s degree in Software Engineering from National Aviation University in Kyiv.
+I am Anton Ohorodnyk [^contacts], a software engineer with a Master’s degree from the prestigious National Aviation University in Kyiv.
 
-I have commercial experience as a software engineer since 2009.
+Since the year 2009, I have been carving my path in the world of software engineering, gaining invaluable commercial experience along the way.
 
-My favorite programming language is [Go](https://go.dev/). However, I believe that every developer must explore various paradigms and languages to have the ability to make the best contribution for every task/product. Therefore, I am open to doing my job in multiple languages if required by task and business.
+Though I hold a deep affection for the programming language [Go](https://go.dev/), I firmly believe that a truly versatile developer must delve into various paradigms and languages to create a unique and seamless contribution for every task and product. Thus, I remain open to embracing multiple languages in my work, should the need arise in task and business.
 
 ## Content
 
