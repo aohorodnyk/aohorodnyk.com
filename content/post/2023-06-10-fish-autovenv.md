@@ -11,7 +11,7 @@ The [Fish shell][fish] is renowned for its user-friendly nature, making it an id
 
 Despite these attractive attributes, many developers I've come across don't prefer [Fish shell][fish], primarily due to integration gaps with tools like [Python][python]'s [virtualenv][virtualenv]. So, in this article, I'm offering a simple solution for automatic [virtualenv][virtualenv] activation for [Fish shell][fish], steering clear of resource-intensive frameworks like [oh-my-fish][omf] that often slow down the shell.
 
-## Understanding [Python][python]'s Virtualenv
+## Understanding Python's Virtualenv
 
 [Python][python]'s [virtualenv][virtualenv] is a tool that creates isolated [Python][python] environments, making it an invaluable resource for managing project dependencies and testing [Python][python]'s new versions without affecting the system's main installation.
 
