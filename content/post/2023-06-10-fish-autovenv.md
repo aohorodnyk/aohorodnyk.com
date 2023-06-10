@@ -1,72 +1,72 @@
 ---
-title: "Fish with auth virtualenv for python"
-description: "How to use fish with auth virtualenv for python?"
+title: "Integrating Python's Virtualenv with Fish shell Without Overcomplicated Frameworks"
+description: "This blog offers a solution to seamlessly integrate Python's virtualenv with the Fish shell, enhancing its user experience and productivity."
 author: "Anton Ohorodnyk"
 date: "2023-06-10T13:12:16-07:00"
 type: "post"
 ---
 ## Introduction
 
-Fish is a smart and user-friendly command line shell for macOS, Linux, and the rest of the family. It's a fully-featured shell that's easy to use and supports powerful features like auto-completion, syntax highlighting, and tabbed completion. Fish is also a great choice for beginners because it's easy to learn and use.
+The [Fish shell][fish] is renowned for its user-friendly nature, making it an ideal command-line interface for macOS, Linux, and more. The shell stands out with its unique features, including auto-completion, syntax highlighting, and tabbed completion. Additionally, its learning curve is gentle enough for beginners to grasp quickly.
 
-However, despite these features, Fish is not the favored shell among the developers I encounter. So, since this shell was not spread enough, there are some integration gaps with other tools. One of them is virtualenv for python.
+Despite these attractive attributes, many developers I've come across don't prefer [Fish shell][fish], primarily due to integration gaps with tools like [Python][python]'s virtualenv. So, in this article, I'm offering a simple solution for automatic virtualenv activation for [Fish shell][fish], steering clear of resource-intensive frameworks like [oh-my-fish][omf] that often slow down the shell.
 
-When I tried to find the solution to do automatic virtualenv activation for fish, but without using [oh-my-fish][omf] and related overcomplecated frameworks that uses a lot of resources and makes shell slow, I found only one solution that works for me. But even found solution was updated 4 years ago and it was not working for me, at least without [oh-my-fish][omf]
+## Understanding [Python][python]'s Virtualenv
 
-## Python's virtualenv
+[Python][python]'s virtualenv is a tool that creates isolated [Python][python] environments, making it an invaluable resource for managing project dependencies and testing [Python][python]'s new versions without affecting the system's main installation.
 
-Python's virtualenv is a tool that allows you to create isolated Python environments. It's a great way to keep your projects separate and avoid dependency conflicts. It's also useful for testing new versions of Python without affecting your system installation.
+> It is perplexing and perhaps not ideal to have [Python][python]'s dependencies installed globally instead of project-specific folders. This issue necessitates workarounds such as virtualenv.
 
-> I cannot (and maybe don't want) to understand why python's dependencies installed globally, but not in the project folder. It's a big problem that we must solve by all these hacks like virtualenv.
+## The Objective
 
-## Solution
-
-Before we will try to solve the problem, let's try to understand what we want to achieve.
+Before diving into the solution, let's clearly define our goal.
 
 ### Task
 
-We want to activate virtualenv automatically when we enter the project folder or any below folders under the project folter. And we want to deactivate virtualenv when we leave the project folder's space.
+We aim to automate the activation of virtualenv when we navigate into the project folder or any of its sub-folders. Additionally, we want to deactivate virtualenv when exiting the project's scope.
 
-It's important to search a virtualenv's folder bottom-up, because we can have a lot of virtualenvs in the project folder and we want to use the closest one.
+A bottom-up search for the virtualenv folder is crucial as multiple virtualenvs can reside within the project folder, and we need to use the nearest one.
 
-We want to use as minimalistic solution as possible to avoid any performance issues and make it as compatible as possible with any fish environment.
+The ultimate goal is to devise a minimalist solution to minimize performance hindrances and ensure maximum compatibility with any Fish environment.
 
-### Plugin
+### Solution: An Adapted Plugin
 
-To solve the issue I forked code from [fish-autovenv](https://github.com/timothybrown/fish-autovenv) built by [Timothy Brown](https://github.com/timothybrown) and shared it on github.
+I adapted the code from [timothybrown/fish-autovenv](https://github.com/timothybrown/fish-autovenv), originally created by [Timothy Brown](https://github.com/timothybrown), and published the modified version on GitHub.
 
-I've found a couple of issues with the existing solution:
+The existing solution had a few shortcomings:
 
-* The plugin did not work with the new version of fish, and I wanted to keep it as simple as possible.
-* The plugin looked for virtual environments in the current directory, but not in the specified sub-directory. For example I store virtual env in a sub-directory called .venv.
-* It does not apply virtual environment when run a terminal in a directory with a custom virtual environment.
-* It searches virtualenv from bottom to top: `/home`, `/home/user`, `/home/user/projects`, `/home/user/projects/pytest`. I believe that bottom-up solution makes more sense and it's more convenient to use.
+* It was incompatible with newer versions of Fish, and my goal was to retain simplicity.
+* The plugin for created for [oh-my-fish][omf], which is a resource-intensive framework that slows down the shell.
+* The plugin could only detect virtual environments in the current directory, not in specified sub-directories. For instance, I store my virtual environments in a .venv sub-directory.
+* The plugin didn't apply the virtual environment when opening a terminal in a directory containing a custom virtual environment.
+* It searched for virtualenvs top-down (`/home`, `/home/user`, `/home/user/projects`, `/home/user/projects/pytest`), whereas a bottom-up approach would have been more efficient and user-friendly.
 
-I use [fisher][fisher] as a minimalistic plugin manager for fish. So, I created a plugin that can be installed by [fisher][fisher] and used in any fish environment.
+As a minimalist plugin manager for Fish, I recommend [fisher][fisher]. I've created a plugin that can be installed via [fisher][fisher] and integrated into any Fish environment. If there are any reasons why you don't want to use Fisher, you can just copy-paste `conf.d/autoenv.fish` file to your `~/.config/fish/conf.d` directory.
 
-Project is located here: [aohorodnyk/fish-autovenv][autovenv].
+The project can be found here: [aohorodnyk/fish-autovenv][autovenv].
 
 ### Installation
 
-To install the plugin, you need to use [fisher][fisher]:
+To install [aohorodnyk/fish-autovenv][autovenv], by using [fisher][fisher]:
 
 ```fish
 fisher install aohorodnyk/fish-autovenv
 ```
 
-The plugin itself has a couple of configurations you can use to customize it:
+The plugin offers several configurable settings for a tailored user experience:
 
-* `set -U autovenv_enable yes|no` - enable or disable the plugin. By default it's enabled.
-* `set -U autovenv_announce yes|no` - enable or disable the announcement when virtualenv is activated or deactivated. By default it's enabled.
-* `set -U autovenv_dir '.venv'` - set the name of the directory where virtualenv is located. By default it's `.venv`.
+* `set -U autovenv_enable yes|no` - to enable or disable the plugin (enabled by default).
+* `set -U autovenv_announce yes|no` - to enable or disable announcements when virtualenv is activated or deactivated (enabled by default).
+* `set -U autovenv_dir '.venv'` - to specify the name of the directory where virtualenv is located (default is `.venv`).
 
 ## Conclusion
 
-Don't afraid to use fish shell. It's a great shell that can be used for any purpose. It's fast, it's smart and it's easy to use. It's a great alternative to bash and zsh.
+Don't be apprehensive about using the [Fish shell][fish]. It's a versatile, fast, and intuitive shell, making it a worthy alternative to bash and zsh.
 
-And contribute to the open source. It's a great way to learn new things and to help other people. It helps to make the world better and simpler for everyone.
+Contributing to open-source is an excellent way to learn, help others, and contribute to making the technological world better and simpler for everyone.
 
 [omf]: https://github.com/oh-my-fish/oh-my-fish
 [fish]: https://fishshell.com/
 [fisher]: https://github.com/jorgebucaran/fisher
 [autovenv]: https://github.com/aohorodnyk/fish-autovenv
+[python]: https://www.python.org/
