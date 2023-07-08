@@ -17,6 +17,7 @@ nav#TableOfContents {
     list-style-type: none;
     margin: 0;
   }
+
   >ul {
     padding-left: 0;
   }
@@ -31,6 +32,7 @@ div.post {
 .post {
   table#list {
     border: none;
+
     td {
       border: none;
       background-color: transparent;
@@ -38,14 +40,19 @@ div.post {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    .content-header-hanchor {
-      display: none;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  .content-header-hanchor {
+    display: none;
+  }
 
-    &:hover {
-      .content-header-hanchor {
-        display: inline;
-      }
+  &:hover {
+    .content-header-hanchor {
+      display: inline;
     }
   }
+}
