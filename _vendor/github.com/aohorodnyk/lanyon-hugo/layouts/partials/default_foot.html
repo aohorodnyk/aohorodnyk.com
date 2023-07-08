@@ -1,7 +1,19 @@
-      </div>
-    </div>
-    <footer>
-      <p class="copyright">&copy; {{ if .Site.Params.Author }} {{ .Site.Params.Author }} {{ end }} {{ .Site.LastChange.Year }}. All rights reserved.</p>
-    </footer>
-  </body>
+</div>
+</div>
+<footer>
+  <ul class="social-icons">
+    {{ range .Site.Params.Social }}
+      {{ $path := print "icons/" .type ".svg" }}
+      {{ $image := resources.Get $path }}
+      {{ $link := .link }}
+      {{ $type := .type }}
+      {{ $title := .title }}
+      {{ with $image }}
+        <li><a rel="me" href="{{ $link }}" title="{{ default ($type | humanize) $title }}" class="{{ $type }}">{{ $image.Content | safeHTML }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+  <p class="copyright">&copy; {{ if .Site.Params.Author }} {{ .Site.Params.Author }} {{ end }} {{ .Site.LastChange.Year }}. All rights reserved.</p>
+</footer>
+</body>
 </html>
