@@ -22,6 +22,19 @@ params:
     - css/site.css
   favicon:
     color: "#262626"
+  social:
+    - type: mastodon
+      link: https://fosstodon.org/@aohorodnyk
+    - type: github
+      title: GitHub
+      link: http://github.com/aohorodnyk/
+    - type: linkedin
+      title: LinkedIn
+      link: https://www.linkedin.com/in/aohorodnyk/
+    - type: email
+      link: mailto:me@aohorodnyk.com
+    - type: resume
+      link: /Anton%20Ohorodnyk.pdf
 
 taxonomies:
 
