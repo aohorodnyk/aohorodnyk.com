@@ -2,7 +2,7 @@
 title: "How to Link Multiple Mastodon Account Aliases to a Domain Via Cloudflare Pages"
 description: "Step-By-Step Guide on Associating Multiple Mastodon Account Aliases to a Domain with Cloudflare Pages, Eliminating the Need for Workers or Extra Coding"
 author: "Anton Ohorodnyk"
-date: "2023-07-08T22:15:23-07:00"
+date: "2023-07-08T22:14:23-07:00"
 type: "post"
 ---
 
