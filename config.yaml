@@ -35,6 +35,9 @@ params:
       link: mailto:me@aohorodnyk.com
     - type: resume
       link: /Anton%20Ohorodnyk.pdf
+    - type: rss
+      title: RSS
+      link: /index.xml
 
 taxonomies:
 
