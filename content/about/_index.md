@@ -27,4 +27,4 @@ Though I hold a deep affection for the programming language [Go](https://go.dev/
 
 This blog is my personal space where I express my thoughts and feelings on various topics that matter to me. I hope that by sharing my perspective, I can inspire, inform or entertain someone who reads my articles. If you want to connect with me, feel free to reach out through any of the channels available.
 
-[^contacts]: [Resume](/Anton%20Ohorodnyk.pdf) - [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [Email](mailto:me@aohorodnyk.com) - Mastodon: [@aohorodnyk@fosstodon.org](https://fosstodon.org/@aohorodnyk)
+[^contacts]: [Resume](/Anton%20Ohorodnyk.pdf) - [GitHub](https://github.com/aohorodnyk) - [LinkedIn](https://www.linkedin.com/in/aohorodnyk) - [Email](mailto:me@aohorodnyk.com) - [Mastodon](https://fosstodon.org/@aohorodnyk)
