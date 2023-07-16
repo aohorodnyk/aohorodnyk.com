@@ -18,6 +18,7 @@ menus:
 params:
   author: Anton Ohorodnyk
   title: Anton Ohorodnyk
+  RSSIncludeContent: true
   customCSS:
     - css/site.css
   favicon:
