@@ -10,29 +10,29 @@ type: "post"
 
 When I read about [Golang][golang] for the first time, I was an active user of languages with exceptions, like [Java][java], [PHP][php], [Python][python], [Ruby][ruby], etc.
 
-It was obvious that big projects handles their behaviour through exceptions and we can control flow through `try/catch` blocks in parent call stack.
+It was obvious that big projects handle their behaviour through exceptions and we can control flow through `try/catch` blocks in parent call stack.
 
 Outside languages with exceptions I had some experience with other languages like [C][clang] or codebases that prohibit exceptions.
 
 Experience without exceptions, usually was less pleasant, because it applied many restrictions and limitations to the codebase.
-Additionally, amny of these codebases did not support return for multiple values, so the flow control had to be built through returnin unsupported values (like `-1` for `int`s and null for references).
+Additionally, many of these codebases did not support return for multiple values, so the flow control had to be built through returning unsupported values (like `-1` for `int`s and null for references).
 Because of these limitations, there were popular ways to handle these restrictions through reference parameters and *returning* results through them.
 
 ## Golang
 
 There we are! We have met [Golang][golang] for the first time.
-The documentation and articles and bool suggest to use `error` return value, instead of exceptions. More over, exceptions are not supported in Golang at all.
+The documentation and articles and bool suggest to use `error` return value, instead of exceptions. More over, exceptions are not supported in Golang at all (or almost).
 
-By going through [Golang][golang] documentation and the codebase, many people notice that there is a `panic` with `recover`, that can be used as an exception. These people write many articles, posts, and comments about how bad it is to use `panic` in libraries and how it is useful.
-But [Golang][golang] community always criticizes these people and suggests to use `error` instead of `panic`. Moreover, those people share an opinion that `error` handling in [Golang][golang] is much better than exceptions in other languages.
+By going through [Golang][golang] documentation and the codebase, many people notice that there is a `panic` with `recover`, that can be used as exceptions. These people write many articles, posts, and comments about how `panic`s in [Go][golang].
+But [Golang][golang] community always criticizes these thoughts and suggests to use `error` returned value instead of `panic`. Moreover, those people share an opinion that `error` handling in [Golang][golang] is much better than exceptions in other languages.
 
 Let's try to understand why it is so.
 
 ## Error handling
 
-Befoer we will compare exceptions and error handling from [Golang][golang], let's try to go through the main ways to handle errors.
+Before we will compare exceptions and error handling from [Golang][golang], let's try to go through the main ways to handle errors.
 
-There are three the main ways to handle errors:
+There are three of them:
 
 * Return error from the function.
 * Throw error through current stack of calls until someone will catch it.
@@ -48,6 +48,8 @@ The best thing about this way is that it is very simple and easy to understand. 
 In case of C it was kinda confusing, since we did not have predictable way to work with errors and we had to check the documentation of each function to understand how it handles errors.
 
 In case of *modern* languages like [Golang][golang], [Rust][rust], etc. we have a predefined way to work with error handling by specific `error` types and rules on how to use them. It improves readability and simplifies interfaces of functions.
+
+Basically all of the changes aroung it are just cosmetic that make huge difference, but concept is still the same.
 
 ![Return error flow diagram](/post/go-panic-libraries/return-error-flow.svg)
 
@@ -95,7 +97,7 @@ But all of them have the same idea to control the execution flow: throw an excep
 
 With [Go][golang] it is a bit different. We do not have exceptions, but we have `panic` and `recover` functions.
 Panics by themself are not control-flow statements, they are closer to [Java][java] `Error` type or [PHP][php] `ErrorException` type. They are used to stop execution of the program in case of critical errors that are not related to business flow of the program.
-In case of [Go][golang] we can use `panic` to throw an error and `recover` to catch it, but we can catch it only in [defer][https://go.dev/tour/flowcontrol/12] functions that are not linear execution code block and applies some limitations on top of it.
+In case of [Go][golang] we can use `panic` to throw an error and `recover` to catch it, but we can catch it only in [defer](https://go.dev/tour/flowcontrol/12) functions that are not linear execution code block and applies some limitations on top of it.
 
 ![Throw exception flow diagram](/post/go-panic-libraries/exception.svg)
 
@@ -150,6 +152,7 @@ This approach is used to stop execution of the program in case of critical error
 
 * Easy to stop an execution of the program.
 * Guarantees that the program will not continue execution in case of critical errors.
+* Application will stop very fast.
 
 #### Cons
 
@@ -197,7 +200,9 @@ func func2() (int, string, bool, error) {
 }
 ```
 
-And we also expect that the caller will check the error and handle it. There is a popular linter that checks it for us: [errcheck](https://github.com/kisielk/errcheck). Errors can be stacked in a chain, wuth two interfaces:
+And we also expect that the caller will check the error and handle it. There is a popular linter that checks it for us: [errcheck](https://github.com/kisielk/errcheck).
+
+Also, errors can be stacked in a chain, wuth two interfaces:
 ```go
 interface {
   Unwrap() error
@@ -212,7 +217,7 @@ With [errors](https://pkg.go.dev/errors) package that contains useful helpers to
 
 Errors is the main way to handle errors in [Go][golang] and it is used in most of the cases and suggested to be used when possible.
 
-> Note: If you can use `error` type, use it. Do not even thing to use any other handling approach.
+> Note: If you can use `error` type, use it. Do not even thing to use any other error handling approaches.
 
 ### Panic and recover
 
@@ -272,7 +277,7 @@ func func2() {
 // Program exited.
 ```
 
-Since we are using `panic` in `func2` function, we stop execution of the program and start to unwind the stack. All `defer`s are executed from `func2`, `func1` and `main`. Because we have not `recover`ed from the panic, the program stops execution and prints a panic message stack trace.
+Since we are using `panic` in `func2` function, we stop execution of the program and start to unwind the stack. All `defer`s are executed from `func2`, `func1` and `main`. Because we have not `recover`ed from the panic, the program stops execution and prints a panic message with stack trace.
 
 We can use `recover` to handle panics and sometimes we will, but as good practice let's agree that we will not use `panic`s as a control flow of the program.
 
@@ -336,7 +341,7 @@ There are some examples:
       * In the most cases we will panic, because we expect that random generator will work.
       * In some cases we will handle the error and use some fallback generator (for example from an external service).
 
-As you can see, there are some cases when we expect from the caller to panic in the most cases of using the library.
+As you can see, there are some cases when we expect from the caller to panic in the most cases of using a library.
 We **ALWAYS** provide the interface with `error` returned as a value, but since we know that in the most cases the caller will not handle the error, we can provide a *helper* function that will panic in case of error.
 
 Let's see an example:
@@ -395,8 +400,9 @@ There is a good practice or/and agreement that if we have a helper-function that
 
 In [Go][golang] we have all tools to handle errors. But the preferrable way to use errors is to return them as a value and handle them in the caller code.
 
-If a developer of a library expects that in the most cases the caller will not handle the error, he can provide a helper function with `Must` prefix that will panic in case of error. But the main interface of the library **MUST** still return an error.
+If a developer of a library expects that in the most cases the caller will not handle the error, they can provide a helper function with `Must` prefix that will panic in case of error. But the main interface of the library **MUST** still return an error.
 
+Let's follow good practices and make our code more stable and predictable.
 
 [golang]: https://golang.org/
 [rust]: https://www.rust-lang.org/
