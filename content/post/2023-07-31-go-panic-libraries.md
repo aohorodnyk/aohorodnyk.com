@@ -49,7 +49,7 @@ In case of C it was kinda confusing, since we did not have predictable way to wo
 
 In case of *modern* languages like [Golang][golang], [Rust][rust], etc. we have a predefined way to work with error handling by specific `error` types and rules on how to use them. It improves readability and simplifies interfaces of functions.
 
-Basically all of the changes aroung it are just cosmetic that make huge difference, but concept is still the same.
+Basically all of the changes around it are just cosmetic that make huge difference, but concept is still the same.
 
 ![Return error flow diagram](/post/go-panic-libraries/return-error-flow.svg)
 
