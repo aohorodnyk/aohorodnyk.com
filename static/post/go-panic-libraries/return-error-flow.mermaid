@@ -1,0 +1,11 @@
+sequenceDiagram
+  alt Callstack
+    main ->> func1: Call func1()
+    func1 ->> func2: Call func2()
+  else Error handling
+    func2 ->> func2: Check error
+    func2 --> func1: Return error
+    func1 ->> func1: Check error
+    func1 --> main: Return error
+    main ->> main: Log error and exit
+  end

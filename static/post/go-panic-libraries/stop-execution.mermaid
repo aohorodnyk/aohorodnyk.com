@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant os as OS level
+  alt Callstack
+    os ->> main: Run probram through main()
+    main ->> func1: Call func1()
+    func1 ->> func2: Call func2()
+  else Error handling
+    func2 ->> func2: Check error
+    func2 --> os: Return error
+    os ->> os: Exit program with error
+  end
