@@ -2,7 +2,7 @@
 title: "Golang panics in libraries"
 description: "Should we panic in libraries? And why not?"
 author: "Anton Ohorodnyk"
-date: "2023-07-21T21:32:14-07:00"
+date: "2023-07-31T21:32:14-07:00"
 type: "post"
 ---
 
@@ -393,9 +393,9 @@ There is a good practice or/and agreement that if we have a helper-function that
 
 ## Conclusion
 
-In [Go][golang] we have all tools to handle errors. But the preferrable way to work with errors is to return them as a value and handle them in the caller code.
+In [Go][golang] we have all tools to handle errors. But the preferrable way to use errors is to return them as a value and handle them in the caller code.
 
-If a developer of a library expects that in the most cases the caller will not handle the error, he can provide a helper function with `Must` prefix that will panic in case of error. But the main interface of the library should still return an error.
+If a developer of a library expects that in the most cases the caller will not handle the error, he can provide a helper function with `Must` prefix that will panic in case of error. But the main interface of the library **MUST** still return an error.
 
 
 [golang]: https://golang.org/
