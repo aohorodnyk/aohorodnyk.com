@@ -1,5 +1,5 @@
 ---
-title: "Integrating Python's Virtualenv with Fish shell Without Overcomplicated Frameworks"
+title: "Integrating Python's Virtualenv with Fish shell without overcomplicated frameworks"
 description: "This blog offers a solution to seamlessly integrate Python's virtualenv with the Fish shell, enhancing its user experience and productivity."
 author: "Anton Ohorodnyk"
 date: "2023-06-10T13:12:16-07:00"

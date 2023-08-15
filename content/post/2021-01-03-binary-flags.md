@@ -1,5 +1,5 @@
 ---
-title: "Quick Review of the Most Popular Ways to Implement Flags"
+title: "Quick review of the most popular ways to implement flags"
 description: "Quick introduction to different type of flags with pros and cons"
 author: "Anton Ohorodnyk"
 date: "2021-01-03T19:13:42-07:00"
