@@ -50,7 +50,7 @@ Example with the simple flow with one message:
 - If the consumer fails (or after some time, depends on implementation) and a message was not committed, the consumer will receive this message one more time (go to option 2)
 - Commit message (do not send it to a consumer anymore)
 
-![Message Queue Diagram](/post/kafka-msq/msq-general.svg)
+![Message Queue Diagram](diagrams/msq-general.svg)
 
 ## Kafka message queue key features
 
@@ -90,7 +90,7 @@ This article should not focus on the partitions feature in Kafka. Still, unfortu
 
 When we create a topic, we can specify the number of partitions (for example, 3). Then, based on the message key (usually generated UUIDv4), the Kafka client will choose one of the partitions and send a message to this partition.
 
-![Kafka partitions](/post/kafka-msq/kafka-partitions.svg)
+![Kafka partitions](diagrams/kafka-partitions.svg)
 
 The diagram above shows how Kafka clients sort messages between partitions.
 Partitions from topics used for Kafka distribution (add new nodes to a cluster) and consumer distribution as well [see consumer paragraph](#consumer).
@@ -116,7 +116,7 @@ Two consumers from the same group will not receive the same message. Instead, ev
 
 > If we use `user_uuid` as a message key, then all messages from the same user will always be sent to the same partition and processed by the same consumer
 
-![Consumer partitions](/post/kafka-msq/kafka-consumers-partitions.svg)
+![Consumer partitions](diagrams/kafka-consumers-partitions.svg)
 
 As we can see on the diagram, consumers automatically assign between partitions while running.
 
@@ -125,14 +125,14 @@ As we can see on the diagram, consumers automatically assign between partitions 
 ### Commit message
 When choosing a message queue pattern, we expect to work with messages individually. We hope to commit messages individually.
 
-![Commit messages unordered](/post/kafka-msq/commit-messages-unordered.svg)
+![Commit messages unordered](diagrams/commit-messages-unordered.svg)
 
 In the diagram above, we can see the example of our expectations. Of course, if we do not commit some individual message, we will receive it soon. Still it will not stop processing the following messages.
 
 As we discussed, Kafka does not provide an API to work with messages individually, so we will shift our pointer of reading messages.
 If we skip one message and do not want to commit it, we cannot move forward, and we need to wait until this message is processed or ignored to shift our pointer and move forward to the next batch.
 
-![Shift pointer](/post/kafka-msq/shift-pointer.svg)
+![Shift pointer](diagrams/shift-pointer.svg)
 
 Following the diagram, we can see that we have to process all messages in any way if we want to move forward.
 

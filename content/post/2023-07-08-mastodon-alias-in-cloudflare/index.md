@@ -52,11 +52,11 @@ In CloudFlare's admin page, I formulated a rule with specific settings and the a
 
 Expression preview: `(http.request.uri.path eq "/.well-known/webfinger" and http.request.uri.query contains "resource=acct:me@aohorodnyk.com") or (http.request.uri.path eq "/.well-known/webfinger" and http.request.uri.query eq "resource=acct%3Ame%40aohorodnyk.com")`.
 
-![Working rules](/post/mastodon-alias-in-cloudflare/transform-rules.png)
+![Working rules](diagrams/transform-rules.png)
 
 And the action is to transform the request to the file `/.well-known/webfinger-aohorodnyk.json`.
 
-![Transformation rules](/post/mastodon-alias-in-cloudflare/rewrite-parameters.png)
+![Transformation rules](diagrams/rewrite-parameters.png)
 
 ## Evaluation
 

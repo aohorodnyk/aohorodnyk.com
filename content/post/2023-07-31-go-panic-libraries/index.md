@@ -51,7 +51,7 @@ In case of *modern* languages like [Golang][golang], [Rust][rust], etc. we have 
 
 Basically all of the changes around it are just cosmetic that make huge difference, but concept is still the same.
 
-![Return error flow diagram](/post/go-panic-libraries/return-error-flow.svg)
+![Return error flow diagram](diagrams/return-error-flow.svg)
 
 In the diagram above we can see the flow of the program that uses this approach to handle errors.
 Short explanation of the diagram:
@@ -99,7 +99,7 @@ With [Go][golang] it is a bit different. We do not have exceptions, but we have 
 Panics by themself are not control-flow statements, they are closer to [Java][java] `Error` type or [PHP][php] `ErrorException` type. They are used to stop execution of the program in case of critical errors that are not related to business flow of the program.
 In case of [Go][golang] we can use `panic` to throw an error and `recover` to catch it, but we can catch it only in [defer](https://go.dev/tour/flowcontrol/12) functions that are not linear execution code block and applies some limitations on top of it.
 
-![Throw exception flow diagram](/post/go-panic-libraries/exception.svg)
+![Throw exception flow diagram](diagrams/exception.svg)
 
 In the diagram above we can find the flow of the program that uses this approach to handle errors.
 Short explanation of the diagram:
@@ -134,7 +134,7 @@ There is no way to recover the execution of the program after `exit` or `assert`
 
 The simplest example of such error is a unsupported value of a parameter in command line interface. In this case we can just stop execution of the program and print an error message to the user.
 
-![Stop execution flow diagram](/post/go-panic-libraries/stop-execution.svg)
+![Stop execution flow diagram](diagrams/stop-execution.svg)
 
 Let's review the flow of the program that uses this approach to handle errors. The diagram above shows the flow. In this diagram we added **OS level** that represents the operating system that runs the program from an [entry point](https://en.wikipedia.org/wiki/Entry_point)[^entry_point].
 
