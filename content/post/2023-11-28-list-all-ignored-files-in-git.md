@@ -2,7 +2,7 @@
 title: "List all ignored files in git"
 description: "Discover an easy way to list all ignored files in git with one simple command."
 author: "Anton Ohorodnyk"
-date: "2023-06-10T15:00:53-07:00"
+date: "2023-11-28T23:00:00-07:00"
 type: "post"
 ---
 ## Preamble
